@@ -1,60 +1,111 @@
 package Bitcoin
 
 import (
-    "encoding/json"
-    "io/ioutil"
-    "os"
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+	"os"
 )
 
 type User struct {
-    Username string `json:"username"`
-    Password string `json:"password"`
+	Firstname string `json:"first"`
+	Firstname string `json:"first"`
+	Firstname string `json:"first"`
+	Firstname string `json:"first"`
+	Firstname string `json:"first"`
+
+	Username string `json:"username"`
+	Password string `json:"password"`
 }
 
-
 func readUsers(filePath string) ([]User, error) {
-    var users []User
-    file, err := os.Open(filePath)
-    if err != nil {
-        return nil, err
-    }
-    defer file.Close()
+	var users []User
+	file, err := os.Open(filePath)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
 
-    data, err := ioutil.ReadAll(file)
-    if err != nil {
-        return nil, err
-    }
+	data, err := ioutil.ReadAll(file)
+	if err != nil {
+		return nil, err
+	}
 
-    err = json.Unmarshal(data, &users)
-    if err != nil {
-        return nil, err
-    }
+	err = json.Unmarshal(data, &users)
+	if err != nil {
+		return nil, err
+	}
 
-    return users, nil
+	return users, nil
 }
 
 func writeUsers(filePath string, users []User) error {
-    data, err := json.MarshalIndent(users, "", "  ")
+	data, err := json.MarshalIndent(users, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	err = ioutil.WriteFile(filePath, data, 0o644)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func addUser(filePath string, newUser User) error {
+	users, err := readUsers(filePath)
+	if err != nil {
+		return err
+	}
+
+	users = append(users, newUser)
+	return writeUsers(filePath, users)
+}
+
+func registerUser(filename string, newUser User) error {
+    users, err := readUsers(filename)
     if err != nil {
         return err
     }
 
-    err = ioutil.WriteFile(filePath, data, 0644)
+    // Check if user already exists
+    for _, user := range users {
+        if user.Username == newUser.Username {
+            return fmt.Errorf("user already exists")
+        }
+    }
+
+    // Hash the password before storing
+    hashedPassword, err := bcrypt.GenerateFromPassword([]byte(newUser.Password), bcrypt.DefaultCost)
     if err != nil {
         return err
     }
+    newUser.Password = string(hashedPassword)
 
-    return nil
+    // Append new user
+    users = append(users, newUser)
+    return writeUsers(filename, users)
 }
 
 
 
-func addUser(filePath string, newUser User) error {
-    users, err := readUsers(filePath)
+func authenticateUser(filename, username, password string) (bool, error) {
+    users, err := readUsers(filename)
     if err != nil {
-        return err
+        return false, err
     }
 
-    users = append(users, newUser)
-    return writeUsers(filePath, users)
+    for _, user := range users {
+        if user.Username == username {
+            err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
+            if err != nil {
+                return false, nil
+            }
+            return true, nil
+        }
+    }
+
+    return false, nil
 }
