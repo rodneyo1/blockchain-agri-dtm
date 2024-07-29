@@ -1,4 +1,4 @@
-package main
+package Bitcoin
 
 import (
     "encoding/json"
