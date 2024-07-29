@@ -8,6 +8,12 @@ import (
 	Bitcoin "Bitcoin/server"
 )
 
+
+type User struct {
+    Username string `json:"username"`
+    Password string `json:"password"`
+}
+
 func main() {
 	if len(os.Args) != 1 {
 		return
@@ -28,7 +34,7 @@ func main() {
 			Bitcoin.ErrorPage(w, http.StatusNotFound, "404 - Not Found")
 		}
 	})
-	fmt.Println("Server is running on port :8080")
+	fmt.Println("Server is running on port :http://localhost:8080/")
 	http.ListenAndServe(":8080", nil)
 }
 
