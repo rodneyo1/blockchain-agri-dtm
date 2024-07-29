@@ -57,5 +57,3 @@ By demonstrating the feasibility of a blockchain-based DTM platform, this projec
 By addressing these challenges, blockchain technology has the potential to revolutionize the agricultural industry and empower farmers.
 
 **Note:** While this proposal outlines a basic approach, it's essential to prioritize features and be prepared to adapt the plan based on unforeseen challenges.
-
-**Would you like to add anything else to this proposal?**
