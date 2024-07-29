@@ -14,7 +14,7 @@ func main() {
 	}
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static")))) // fs := http.FileServer(http.Dir("static"))
 	// assets := http.FileServer(http.Dir("assets"))
-	http.HandleFunc("/", Bitcoin.Home)
+	// http.HandleFunc("/", Bitcoin.Home)
 	// http.HandleFunc("/ascii-art", Bitcoin.Art)
 	// http.Handle("/static/", http.StripPrefix("/assets/static/", fs))
 	// http.Handle("/assets/", http.StripPrefix("/assets/", assets))
