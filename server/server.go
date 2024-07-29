@@ -14,28 +14,25 @@ type ascii struct {
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
-	home := template.Must(template.ParseFiles("./web/templates/index.html"))
+	home := template.Must(template.ParseFiles("./web/templates/login.html"))
 	w.WriteHeader(http.StatusOK)
 
 	home.Execute(w, nil)
 }
 
-func About(w http.ResponseWriter, r *http.Request) {
-	home := template.Must(template.ParseFiles("./template/about.html"))
+
+func Checkout(w http.ResponseWriter, r *http.Request) {
+	home := template.Must(template.ParseFiles("./web/templates/checkout.html"))
 	w.WriteHeader(http.StatusOK)
 
 	home.Execute(w, nil)
 }
 
-func Instructions(w http.ResponseWriter, r *http.Request) {
-	home := template.Must(template.ParseFiles("./template/instructions.html"))
-	w.WriteHeader(http.StatusOK)
 
-	home.Execute(w, nil)
-}
+
 
 func ErrorPage(w http.ResponseWriter, statusCode int, message string) {
-	tmpl := template.Must(template.ParseFiles("template/error.html"))
+	tmpl := template.Must(template.ParseFiles("./web/template/error.html"))
 	w.WriteHeader(statusCode)
 	data := ascii{Error: message}
 	tmpl.Execute(w, data)
