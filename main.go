@@ -11,12 +11,14 @@ import (
 func main() {
 	if len(os.Args) != 1 {
 		return
+
 	}
-	fs := http.FileServer(http.Dir("static"))
+	http.Handle("/web/static/", http.StripPrefix("/web/static/", http.FileServer(http.Dir("static"))))
+	// fs := http.FileServer(http.Dir("static"))
 	// assets := http.FileServer(http.Dir("assets"))
 	http.HandleFunc("/", Bitcoin.Home)
 	// http.HandleFunc("/ascii-art", handler.Art)
-	http.Handle("/static/", http.StripPrefix("/assets/static/", fs))
+	// http.Handle("/static/", http.StripPrefix("/assets/static/", fs))
 	// http.Handle("/assets/", http.StripPrefix("/assets/", assets))
 	// http.HandleFunc("/about", handler.About)
 	// http.HandleFunc("/instructions", handler.Instructions)
