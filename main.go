@@ -21,8 +21,8 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static")))) // fs := http.FileServer(http.Dir("static"))
 	// assets := http.FileServer(http.Dir("assets"))
 	http.HandleFunc("/checkout", Bitcoin.Checkout)
-	http.HandleFunc("/register", handleRegister)
-    http.HandleFunc("/login", handleLogin)
+	http.HandleFunc("/register", Bitcoin.HandleRegister)
+    http.HandleFunc("/login", Bitcoin.HandleLogin)
 	// http.HandleFunc("/ascii-art", Bitcoin.Art)
 	// http.Handle("/static/", http.StripPrefix("/assets/static/", fs))
 	// http.Handle("/assets/", http.StripPrefix("/assets/", assets))
@@ -36,7 +36,7 @@ func main() {
 			Bitcoin.ErrorPage(w, http.StatusNotFound, "404 - Not Found")
 		}
 	})
-	fmt.Println("Server is running on port :http://localhost:8080/")
+	fmt.Println("Server is running on port :http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }
 
