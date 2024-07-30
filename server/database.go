@@ -3,20 +3,21 @@ package Bitcoin
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"net/http"
+	"io"
 	"os"
+    bcrypt "golang.org/x/crypto/bcrypt"
 )
 
 type User struct {
 	Firstname string `json:"first"`
-	Firstname string `json:"first"`
-	Firstname string `json:"first"`
-	Firstname string `json:"first"`
-	Firstname string `json:"first"`
+	Lastname  string `json:"last"`
+	Email     string `json:"email"`
+	Username  string `json:"username"`
+	Password  string `json:"password"`
+    Location string `json:"location"`
 
-	Username string `json:"username"`
-	Password string `json:"password"`
+	// Username string `json:"username"`
+	// Password string `json:"password"`
 }
 
 func readUsers(filePath string) ([]User, error) {
@@ -27,7 +28,7 @@ func readUsers(filePath string) ([]User, error) {
 	}
 	defer file.Close()
 
-	data, err := ioutil.ReadAll(file)
+	data, err := io.ReadAll(file)
 	if err != nil {
 		return nil, err
 	}
@@ -40,13 +41,13 @@ func readUsers(filePath string) ([]User, error) {
 	return users, nil
 }
 
-func writeUsers(filePath string, users []User) error {
+func WriteUsers(filePath string, users []User) error {
 	data, err := json.MarshalIndent(users, "", "  ")
 	if err != nil {
 		return err
 	}
 
-	err = ioutil.WriteFile(filePath, data, 0o644)
+	err = os.WriteFile(filePath, data, 0o644)
 	if err != nil {
 		return err
 	}
@@ -54,58 +55,47 @@ func writeUsers(filePath string, users []User) error {
 	return nil
 }
 
-func addUser(filePath string, newUser User) error {
-	users, err := readUsers(filePath)
+
+func RegisterUsers(filename string, newUser User) error {
+	users, err := readUsers(filename)
 	if err != nil {
 		return err
 	}
 
+	// Check if user already exists
+	for _, user := range users {
+		if user.Username == newUser.Username {
+			return fmt.Errorf("user already exists")
+		}
+	}
+
+	// Hash the password before storing
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(newUser.Password), bcrypt.DefaultCost)
+	if err != nil {
+		return err
+	}
+	newUser.Password = string(hashedPassword)
+
+	// Append new user
 	users = append(users, newUser)
-	return writeUsers(filePath, users)
+	return WriteUsers(filename, users)
 }
 
-func registerUser(filename string, newUser User) error {
-    users, err := readUsers(filename)
-    if err != nil {
-        return err
-    }
+func AuthenticateUser(filename, username, password string) (bool, error) {
+	users, err := readUsers(filename)
+	if err != nil {
+		return false, err
+	}
 
-    // Check if user already exists
-    for _, user := range users {
-        if user.Username == newUser.Username {
-            return fmt.Errorf("user already exists")
-        }
-    }
+	for _, user := range users {
+		if user.Username == username {
+			err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
+			if err != nil {
+				return false, nil
+			}
+			return true, nil
+		}
+	}
 
-    // Hash the password before storing
-    hashedPassword, err := bcrypt.GenerateFromPassword([]byte(newUser.Password), bcrypt.DefaultCost)
-    if err != nil {
-        return err
-    }
-    newUser.Password = string(hashedPassword)
-
-    // Append new user
-    users = append(users, newUser)
-    return writeUsers(filename, users)
-}
-
-
-
-func authenticateUser(filename, username, password string) (bool, error) {
-    users, err := readUsers(filename)
-    if err != nil {
-        return false, err
-    }
-
-    for _, user := range users {
-        if user.Username == username {
-            err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
-            if err != nil {
-                return false, nil
-            }
-            return true, nil
-        }
-    }
-
-    return false, nil
+	return false, nil
 }
