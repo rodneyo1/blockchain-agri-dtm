@@ -1,134 +1,245 @@
-<html><head><base href="/"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AgriLink - Your Agricultural Marketplace</title><style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f0f8f0;
-        color: #333;
-    }
-    header {
-        background-color: #4CAF50;
-        color: white;
-        padding: 1rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    h1 {
-        margin: 0;
-    }
-    nav {
-        display: flex;
-        gap: 1rem;
-    }
-    .auth-btn {
-        background-color: #45a049;
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-    .auth-btn:hover {
-        background-color: #397d3b;
-    }
-    main {
-        max-width: 1200px;
-        margin: 2rem auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 2rem;
-        padding: 0 1rem;
-    }
-    .product {
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        overflow: hidden;
-        transition: transform 0.3s;
-    }
-    .product:hover {
-        transform: translateY(-5px);
-    }
-    .product img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-    .product-info {
-        padding: 1rem;
-    }
-    .seller {
-        font-size: 0.9rem;
-        color: #666;
-    }
-    .buy-btn {
-        display: block;
-        width: 100%;
-        padding: 0.5rem;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-    .buy-btn:hover {
-        background-color: #45a049;
-    }
-</style></head><body>
-    <header>
-        <h1>AgriLink</h1>
-        <nav>
-            <a href="/registeration">register</a>
-            <a href="/login">login</a>
-        </nav>
-    </header>
-    <main>
-        <div class="product">
-            <img src="https://agrilink.com/images/tomatoes.jpg" alt="Fresh red tomatoes in a wooden crate" width="200" height="200">
-            <div class="product-info">
-                <p class="seller">Green Thumb Farms</p>
-                <button class="buy-btn" onclick="location.href='/checkout?product=tomatoes'">Buy Now</button>
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="https://agrilink.co.ke/">
+    <title>AgriLink - Kenya's Decentralized Marketplace for Farm Inputs and Produce</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="/static/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ea;
+            color: #333;
+        }
+        .navbar {
+            background-color: #4CAF50;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .hero {
+            background-image: url('https://source.unsplash.com/1600x900/?farm,kenya');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .marketplace {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .item {
+            transition: transform 0.3s ease;
+        }
+        .item:hover {
+            transform: translateY(-5px);
+        }
+        .btn-success {
+            background-color: #4CAF50;
+            border-color: #4CAF50;
+        }
+        .btn-success:hover {
+            background-color: #45a049;
+            border-color: #45a049;
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #4CAF50;
+        }
+        .partner-logo {
+            max-width: 150px;
+            height: auto;
+            margin: 20px;
+        }
+        .team-member {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">AgriLink</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#marketplace">Marketplace</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#farmers">For Farmers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#businesses">For Businesses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="product">
-            <img src="https://agrilink.com/images/carrots.jpg" alt="Bunch of organic carrots with green tops" width="200" height="200">
-            <div class="product-info">
-                <p class="seller">Root Vegetable Co.</p>
-                <button class="buy-btn" onclick="location.href='/checkout?product=carrots'">Buy Now</button>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>AgriLink</h1>
+            <p class="lead">Kenya's Decentralized Marketplace for Farm Inputs and Produce</p>
+            <a href="#marketplace" class="btn btn-light btn-lg">Start Trading</a>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <h2 id="marketplace" class="text-center mb-4">Featured Items</h2>
+        <div class="row marketplace">
+            <div class="col-md-3 mb-4">
+                <div class="card item">
+                    <img src="https://replicate.delivery/yhqm/FccWKqCcbK4jIxrOuyyWffeBKa8xhz7C4IHH7f7SxNRiLd2MB/out-0.png" class="card-img-top" alt="organic fertilizer">
+                    <div class="card-body">
+                        <h5 class="card-title">Organic Fertilizer</h5>
+                        <p class="card-text">High-quality organic fertilizer for sustainable farming</p>
+                        <p class="card-text"><strong>Price:</strong> KES 2,500 per 50kg bag</p>
+                        <button class="btn btn-success buy-btn" data-id="1">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card item">
+                    <img src="https://replicate.delivery/yhqm/eHuFVq9lmy1jBiGBci9qGBh5Xf5iDpsuKOhArV7AJtT6SnNTA/out-0.png" class="card-img-top" alt="Fresh Maize">
+                    <div class="card-body">
+                        <h5 class="card-title">Fresh Maize</h5>
+                        <p class="card-text">Locally grown, non-GMO maize ready for purchase</p>
+                        <p class="card-text"><strong>Price:</strong> KES 50 per kg</p>
+                        <button class="btn btn-success buy-btn" data-id="2">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card item">
+                    <img src="https://replicate.delivery/yhqm/ndEEQk9bqUbCFN4tNRd8MHD90cPffVygQSIkzvVG9dR6SnNTA/out-0.png" class="card-img-top" alt="Vegetable Seeds">
+                    <div class="card-body">
+                        <h5 class="card-title">Vegetable Seed Mix</h5>
+                        <p class="card-text">Assorted vegetable seeds for your home garden</p>
+                        <p class="card-text"><strong>Price:</strong> KES 500 per pack</p>
+                        <button class="btn btn-success buy-btn" data-id="3">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card item">
+                    <img src="https://replicate.delivery/yhqm/vbXW3Q0RA8KzDtEltid6als1IaSf1jjce69O6q4y3z97SnNTA/out-0.png" class="card-img-top" alt="Fresh Tomatoes">
+                    <div class="card-body">
+                        <h5 class="card-title">Fresh Tomatoes</h5>
+                        <p class="card-text">Juicy, ripe tomatoes from local farmers</p>
+                        <p class="card-text"><strong>Price:</strong> KES 100 per kg</p>
+                        <button class="btn btn-success buy-btn" data-id="4">Buy Now</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="product">
-            <img src="https://agrilink.com/images/apples.jpg" alt="Red apples in a wicker basket" width="200" height="200">
-            <div class="product-info">
-                <p class="seller">Orchard Delights</p>
-                <button class="buy-btn" onclick="location.href='/checkout?product=apples'">Buy Now</button>
+    </div>
+
+    <div class="container mt-5">
+        <h2 id="farmers" class="text-center mb-4">For Farmers</h2>
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <i class="fas fa-tractor feature-icon"></i>
+                <h3>List Your Products</h3>
+                <p>Easily list your farm produce and reach a wide audience of buyers.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="fas fa-chart-line feature-icon"></i>
+                <h3>Market Insights</h3>
+                <p>Get real-time market data to make informed decisions about your crops.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="fas fa-hands-helping feature-icon"></i>
+                <h3>Community Support</h3>
+                <p>Connect with other farmers and share knowledge and resources.</p>
             </div>
         </div>
-        <div class="product">
-            <img src="https://agrilink.com/images/lettuce.jpg" alt="Fresh green lettuce heads" width="200" height="200">
-            <div class="product-info">
-                <p class="seller">Leafy Greens Farm</p>
-                <button class="buy-btn" onclick="location.href='/checkout?product=lettuce'">Buy Now</button>
+    </div>
+
+    <div class="container mt-5">
+        <h2 id="businesses" class="text-center mb-4">For Businesses</h2>
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <i class="fas fa-shopping-cart feature-icon"></i>
+                <h3>Wholesale Purchasing</h3>
+                <p>Buy farm produce in bulk at competitive prices directly from farmers.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="fas fa-truck feature-icon"></i>
+                <h3>Logistics Solutions</h3>
+                <p>Access reliable logistics partners for seamless delivery of goods.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="fas fa-balance-scale feature-icon"></i>
+                <h3>Fair Trade Practices</h3>
+                <p>Ensure ethical sourcing and support sustainable farming practices.</p>
             </div>
         </div>
-        <div class="product">
-            <img src="https://agrilink.com/images/potatoes.jpg" alt="Russet potatoes in a burlap sack" width="200" height="200">
-            <div class="product-info">
-                <p class="seller">Spud Masters</p>
-                <button class="buy-btn" onclick="location.href='/checkout?product=potatoes'">Buy Now</button>
+    </div>
+
+    <div class="container mt-5">
+        <h2 id="partners" class="text-center mb-4">Our Trusted Partners</h2>
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <img src="data:image/jpeg;base64,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" class="partner-logo" alt="Ministry of Agriculture">
+                <p>Zone01 Kisumu</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <img src="https://www.kari.org/wp-content/uploads/2019/01/logo-final-1.png" class="partner-logo" alt="Kenya Agriculture and Livestock Research Organization">
+                <p>Kenya Agriculture and Livestock Research Organization</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <img src="data:image/jpeg;base64,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" class="partner-logo" alt="Safaricom">
+                <p>Safaricom</p>
+            </div>
+            <div class="col-md-3 text-center">
+                <img src="data:image/jpeg;base64,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" class="partner-logo" alt="Equity Bank">
+                <p>Equity Bank</p>
             </div>
         </div>
-        <div class="product">
-            <img src="https://agrilink.com/images/strawberries.jpg" alt="Fresh ripe strawberries in a punnet" width="200" height="200">
-            <div class="product-info">
-                <p class="seller">Berry Good Farms</p>
-                <button class="buy-btn" onclick="location.href='/checkout?product=strawberries'">Buy Now</button>
-            </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2024 AgriLink. All Rights Reserved.</p>
         </div>
-    </main>
-    <script>
-        // Add more interactivity or functionality here if needed
-        console.log('AgriLink marketplace loaded successfully!');
-    </script>
-</body></html>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
