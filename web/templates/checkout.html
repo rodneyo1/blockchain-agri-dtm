@@ -1,121 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<html><head><base href="https://mpesabilling.example.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple M-Pesa Billing Page</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+        color: #1a73e8;
+        text-align: center;
+    }
+    .billing-info {
+        margin-bottom: 20px;
+    }
+    .mpesa-logo {
+        display: block;
+        margin: 20px auto;
+        width: 150px;
+        height: auto;
+    }
+    .highlight {
+        font-weight: bold;
+        color: #1a73e8;
+    }
+    .contact-info {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+</style>
 </head>
 <body>
-    <header>
-        <h2>Checkout</h2>
-        <link rel="stylesheet" href="/static/checkout.css">
-    </header>
-    <div class="white-space"></div>
-    <div class="wrapper">
-        <div class="row">
-            <div class="col-12 col">
-            </div>
+    <div class="container">
+        <h1>M-Pesa Payment</h1>
+        
+        <svg class="mpesa-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100">
+            <rect width="300" height="100" fill="#00a54f"/>
+            <text x="150" y="60" font-family="Arial, sans-serif" font-size="40" fill="white" text-anchor="middle">M-PESA</text>
+        </svg>
+        
+        <div class="billing-info">
+            <p>Total Cost: <span class="highlight">KSh 1,500.00</span></p>
+            <p>Till Number: <span class="highlight">123456</span></p>
         </div>
-        <div class="row">
-            <form method="get">
-                <div class="col-7 col">
-                    <h3 class="topborder"><span>Billing Details</span></h3>
-                    <!-- <label for="country">Country</label> -->
-                    <!-- <select name="country" id="country" required>
-                        <option value="">Please select a country</option>
-                        <option value="Canada">Canada</option>
-                        <option value="Not Canada">Not Canada</option>
-                    </select> -->
-                    <div class="width50 padright">
-                        <label for="fname">First Name</label>
-                        <input type="text" name="fname" id="fname" required>
-                    </div>
-                    <div class="width50">
-                        <label for="lname">Last Name</label>
-                        <input type="text" name="lname" id="lname" required>
-                    </div>
-                    <!-- <label for="company">Company Name</label>
-                    <input type="text" name="company" id="company" required> -->
-                    <label for="address">Address</label>
-                    <input type="text" name="address" id="address" required>
-                    <input type="text" name="address" id="address2" placeholder="Optional">
-                    <label for="city">Town / City</label>
-                    <input type="text" name="city" id="city" required>
-                    <div class="width50 padright">
-                        <!-- <label for="province">Province</label> -->
-                        <select name="county" id="county" required>
-                            <option value="">Please select a county</option>
-                            <option value="mn">Mombasa</option>
-                            <option value="kw">Kwale</option>
-                            <option value="ki">Kilifi</option>
-                            <option value="ta">Tana River</option>
-                            <option value="la">Lamu</option>
-                            <option value="pn">Pwani</option>
-                            <option value="ga">Garissa</option>
-                            <option value="wd">Wajir</option>
-                            <option value="is">Isiolo</option>
-                            <option value="mr">Marsabit</option>
-                            <option value="si">Samburu</option>
-                            <option value="tt">Taita Taveta</option>
-                            <option value="ke">Kajiado</option>
-                            <option value="nk">Nakuru</option>
-                            <option value="na">Narok</option>
-                        </select>
-                        
-                    </div>
-                    <div class="width50">
-                        <label for="postcode">Postcode</label>
-                        <input type="text" name="postcode" id="postcode" placeholder="Postcode / Zip" required>
-                    </div>
-                    <div class="width50 padright">
-                        <label for="email">Email Address</label>
-                        <input type="text" name="email" id="email" required>
-                    </div>
-                    <div class="width50">
-                        <label for="tel">Phone</label>
-                        <input type="text" name="tel" id="tel" required>
-                    </div>
-                    <input type="checkbox" value="2" name="checkbox"><p>Create an account?</p>
-                    <h3 class="topborder"><span>Shipping Address</span></h3>
-                    <input type="checkbox" value="3" name="checkbox"><p>Ship to a different address?</p>
-                    <label for="notes" class="notes">Order Notes</label>
-                    <textarea name="notes" id="notes" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                </div>
-                <div class="col-5 col order">
-                    <h3 class="topborder"><span>Your Order</span></h3>
-                    <div class="row">
-                        <h4 class="inline">Product</h4>
-                        <h4 class="inline alignright">Total</h4>
-                    </div>
-                    <div>
-                        <p class="prod-description inline">Nice Dress<div class="qty inline"><span class="smalltxt">x</span> 1</div>
-                        </p>
-                    </div>
-                    <div><h5>Cart Subtotal</h5></div>
-                    <div>
-                        <h5 class="inline difwidth">Shipping and Handling</h5>
-                        <p class="inline alignright center">Free Shipping</p>
-                    </div>
-                    <div><h5>Order Total</h5></div>
-    
-                    <div>
-                        <h3 class="topborder"><span>Payment Method</span></h3>
-                        <input type="radio" value="banktransfer" name="payment" checked><p>Direct Bank Transfer</p>
-                        <p class="padleft">
-                            Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account.
-                        </p>
-                    </div>
-    
-                    <div><input type="radio" value="cheque" name="payment"><p>Cheque Payment</p></div>
-                    <div>
-                        <input type="radio" value="paypal" name="payment"><p>MPesa</p>
-                        
-                        <a href="https://www.safaricom.co.ke/main-mpesa" class="padleft">What is MPesa?</a>
-                    </div>
-                    <input type="submit" name="submit" value="Place Order" class="redbutton">
-                </div>
-            </form>
+        
+        <h2>How to Pay:</h2>
+        <ol>
+            <li>Go to M-Pesa on your phone</li>
+            <li>Select "Pay Bill"</li>
+            <li>Enter Business Number: <span class="highlight">123456</span></li>
+            <li>Enter Account Number: Your phone number</li>
+            <li>Enter the amount: <span class="highlight">1500</span></li>
+            <li>Enter your M-Pesa PIN and confirm</li>
+        </ol>
+        
+        <div class="contact-info">
+            <h3>Seller Contact Information:</h3>
+            <p>Name: John Doe</p>
+            <p>Phone: +254 712 345 678</p>
+            <p>Email: john.doe@example.com</p>
         </div>
     </div>
+
+    <script>
+        // Simple validation to ensure the payment amount is correct
+        document.addEventListener('DOMContentLoaded', function() {
+            const amount = 1500; // Amount in KSh
+            const amountElements = document.querySelectorAll('.highlight');
+            
+            amountElements.forEach(element => {
+                if (element.textContent.includes(amount.toString())) {
+                    element.style.color = '#00a54f'; // Change color to M-Pesa green for correct amount
+                }
+            });
+        });
+    </script>
 </body>
 </html>
