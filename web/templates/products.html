@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yena</title>
+      <!-----owl-carosel--styles---->
+      <link rel="stylesheet" href="../css/owl.carousel.min.css">
+      <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+ 
+      <!------AOS style Library-------------------->
+      <link rel="stylesheet" href="../css/aos.css">
+ 
+      <!--magnific-popup cssfile-->
+      <!-- <link rel="stylesheet" href="../Vendor/Magnific-Popup/Magnific-Popup/dist/magnific-popup.css"> -->
+ 
+     <!-- Bootstrap cdn-->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+     <!-------- ---font awesome-------------------------->
+     <link rel="stylesheet" href="../css/all.css">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <!--custom cssstyle code--> 
+     <link rel="stylesheet" href="../css/style.css">
+ 
+     <!--favicon link-->
+   <link rel="icon" type="image/png" sizes="16x16" href="../assets/Logo/favicon-32x32.png">
+
+       
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <input type="checkbox" class="d-none" id="openClose_toggle_nav">       
+  <nav class="navbar navbar-expand-lg" >
+      <div class="container-fluid mini-nav">
+          <div class="logo-container d-flex">
+              <label for="openClose_toggle_nav" class="align-self-center   text-terquise cursor mx-2 opacity-dim "  style="color: white!important;">
+                  <i class="fa-solid fa-bars-staggered text-terquise font-size-32 opacity-alt"></i>
+              </label>
+               <a class="navbar-brand align-self-center"  href="#">
+                  <img class="img-fluid" src="../assets/Logo/Yene_logo_edited.png" alt="logo" >
+              </a>
+           </div>
+          <ul class="navbar-nav w-100">
+            
+                  <div class="search-area">     
+                      <form class="search-container-form">
+                          <input class=" font-size-12  px-2" type="search" placeholder="Search Categories/products... " aria-label="Search">   
+                          <button class=" text-light" type="submit"><i class="fas fa-search"></i></button>
+                          <div class="search-icon"><i class="fa-solid fa-arrow-down-wide-short"></i></div>  
+                      </form>
+                   </div>
+                   <div class="nav-contents d-flex text-space-between">
+              
+                      <!--Nav left-->
+                     <ul class="navbar-nav">
+                        
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown"><i class="fa-solid fa-arrow-up-short-wide rotate-90"></i> Categories </a>
+                          <ul class="dropdown-menu bg-logo" aria-labelledby="navbarDropdown">
+                           
+                            <li class="nav-item font-size-12  py-1 px-2">
+                              <a class="dropdown-item text-small-case text-terquise nav-link dropdown-toggle " href="#" data-bs-toggle="dropdown">category 1</a>
+                              <ul class="dropdown-menu bg-logo px-2 border-left-logo" aria-labelledby="navbarDropdown">
+                                  <li class="nav-item font-size-12  py-1">
+                                      <a class="dropdown-item text-small-case text-terquise " href="#">sub category 1</a>
+                                  </li>
+                              </ul>
+                          </li>
+                         
+                              
+                            
+                          </ul>
+                        </li>
+                    </ul>   
+                    </div>
+                    <div class="act-btns">
+                      <li class="nav-item font-size-18 text-right align-self-center">
+                          <a class="nav-link text-white" href="./html-snipets/Wishlist.html"><i class="fas fa-heart"></i><sup class="bg-danger text-light text-center px-1 py-1 " style="border-radius: 50%;">12</sup></a>
+                        </li>
+                       
+                        <li class="nav-item font-size-18 text-right align-self-center">
+                          <a class="nav-link text-white" href="../html-snipets/cart.html"><i class="fas fa-shopping-cart"></i><sup class="bg-warning text-dark text-center px-1 py-1 " style="border-radius: 50%;">12</sup></a>
+                        </li>
+                        <ul class="navbar-nav mx-2 d-none  avator">
+                          <li class="nav-item font-size-12  py-1">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
+                            height="50" alt="Avatar" loading="lazy" />
+                          </li>
+                        </ul>
+                    </div>
+              
+          </ul>
+          <div class="classy-buttons d-flex  align-self-center">
+              
+              <div class="ms-auto d-flex align-self-center">
+                  <ul class="navbar-nav ">
+                      <li class="nav-item font-size-12  py-1">
+                          <a class="" href="../html-snipets/charity_event.html">
+                              <div class="search-button d-flex bg-logo-right font-size-12  btn border-radius btn-border-radius btn-outline-info  text-bold ">
+                                 <div class="icon-button-border bg-logo  border-radius-circle "> <i class="btn-icon fa-solid fa-building  align-self-center font-size-16 "></i></div>
+                                  <span class=" align-self-center mx-2">BECOME A VENDOR</span>
+                              </div> 
+                          </a>
+                      </li>
+                    </ul>
+                  <ul class="navbar-nav mx-2 ">
+                      <li class="nav-item font-size-12  py-1">
+                          <a class="" href="../html-snipets/charity_event.html">
+                              <div class="search-button d-flex  font-size-12  btn border-radius btn-border-radius btn-outline-info  text-bold ">
+                                 <div class="icon-button-border bg-logo-text border-radius-circle "> <i class="btn-icon fa-solid fa-circle-dollar-to-slot align-self-center font-size-16 "></i></div>
+                                  <span class=" align-self-center mx-2 text-terquise">YENE FOR GOOD</span>
+                              </div> 
+                          </a>
+                      </li>
+                    </ul>
+                    <ul class="navbar-nav mx-2 d-none avator">
+                      <li class="nav-item font-size-12  py-1">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
+                        height="50" alt="Avatar" loading="lazy" />
+                      </li>
+                    </ul>
+                    
+              </div>
+  
+        </div>
+      </div>
+       
+   </nav>
+  <hr class="mt-0 mb-0 nav-divider">
+  <!-- main-navigation-->
+  <nav class="navbar navbar-expand-lg py-1  mt-0 nav-main" id="mynavbar" >
+    <div class="container-fluid nav-main-navbar">
+      <div class="logo-container  d-flex text-space-between" >
+           <a class="navbar-brand d-none align-self-center"  href="#"id="logo-container-main">
+              <img class="img-fluid" src="../assets/Logo/Yene_logo_edited.png" alt="logo" >
+          </a>
+          <label for="openClose_toggle_nav" class="align-self-center d-none nav-toggler text-terquise cursor mx-2 opacity-dim "   style="color: white!important;">
+              <i class="fa-solid fa-bars-staggered text-terquise font-size-32 opacity-alt"></i>
+          </label>
+          <div class="nav-contents d-flex text-space-between align-self-center">
+              <!--Nav left-->
+             <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-white" href="#" data-bs-toggle="dropdown"><i class="fa-solid fa-arrow-up-short-wide rotate-90"></i> Categories </a>
+                    <ul class="dropdown-menu bg-logo">
+                      <li class="has-megasubmenu">
+                        <a class="dropdown-item text-terquise font-size-14" href="#"> Dropdown item 1 &raquo; </a>
+                        <div class="megasubmenu bg-logo dropdown-menu">
+                            <div class="row">
+                               <div class="col-6">
+                                       <h6 class="title font-size-14">Title Menu One</h6>
+                                       <ul class="list-unstyled">
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                       </ul>
+                               </div><!-- end col-3 -->
+                               <div class="col-6">
+                                   <h6 class="title font-size-14">Title Menu Two</h6>
+                                       <ul class="list-unstyled">
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                       </ul>
+                               </div><!-- end col-3 -->
+                           </div><!-- end row -->
+                        </div>
+                    </li>
+                      <li class="has-megasubmenu">
+                        <a class="dropdown-item text-terquise font-size-14" href="#"> Dropdown item 2 &raquo; </a>
+  
+                        <div class="megasubmenu dropdown-menu bg-logo">
+                            <div class="row">
+                               <div class="col-6">
+                                       <h6 class="title font-size-14">Title Menu Three</h6>
+                                       <ul class="list-unstyled">
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                       </ul>
+                               </div><!-- end col-3 -->
+                               <div class="col-6">
+                                   <h6 class="title font-size-14">Title Menu Four</h6>
+                                       <ul class="list-unstyled">
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                       </ul>
+                               </div><!-- end col-3 -->
+                           </div><!-- end row -->
+                        </div>
+                     </li>
+                     <li class="has-megasubmenu">
+                          <a class="dropdown-item text-terquise font-size-14" href="#"> Dropdown item 3 &raquo; </a>
+                          <div class="megasubmenu dropdown-menu bg-logo">
+                           <div class="row">
+                               <div class="col-6">
+                                       <h6 class="title font-size-14">Title Menu Five</h6>
+                                       <ul class="list-unstyled">
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                       </ul>
+                               </div><!-- end col-3 -->
+                               <div class="col-6">
+                                   <h6 class="title font-size-14">Title Menu Six</h6>
+                                       <ul class="list-unstyled">
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                           <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                       </ul>
+                               </div><!-- end col-3 -->
+                           </div><!-- end row -->
+                        </div>
+  
+                      <li class="has-megasubmenu">
+                        <a class="dropdown-item text-terquise font-size-14" href="#"> Dropdown item 4 &raquo; </a>
+                        <div class="megasubmenu dropdown-menu bg-logo">
+                            <div class="row">
+                                 <div class="col-6">
+                                         <h6 class="title font-size-14">Title Menu One</h6>
+                                         <ul class="list-unstyled">
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                         </ul>
+                                 </div><!-- end col-3 -->
+                                 <div class="col-6">
+                                     <h6 class="title font-size-14">Title Menu Two</h6>
+                                         <ul class="list-unstyled">
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                         </ul>
+                                 </div><!-- end col-3 -->
+                             </div><!-- end row -->
+                          </div>
+                    </li>
+                      <li class="has-megasubmenu">
+                        <a class="dropdown-item text-terquise font-size-14" href="#"> Dropdown item 5 &raquo; </a>
+                        <div class="megasubmenu dropdown-menu bg-logo">
+                            <div class="row">
+                                 <div class="col-6">
+                                         <h6 class="title font-size-14">Title Menu Three</h6>
+                                         <ul class="list-unstyled">
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                         </ul>
+                                 </div><!-- end col-3 -->
+                                 <div class="col-6">
+                                     <h6 class="title font-size-14">Title Menu Four</h6>
+                                         <ul class="list-unstyled">
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                         </ul>
+                                 </div><!-- end col-3 -->
+                             </div><!-- end row -->
+                          </div>
+                    </li>
+  
+                      <li class="has-megasubmenu">
+                        <a class="dropdown-item text-terquise font-size-14" href="#"> Dropdown item 6 &raquo; </a>
+                        <div class="megasubmenu dropdown-menu bg-logo">
+                            <div class="row">
+                                 <div class="col-6">
+                                         <h6 class="title font-size-14">Title Menu Five</h6>
+                                         <ul class="list-unstyled">
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                         </ul>
+                                 </div><!-- end col-3 -->
+                                 <div class="col-6">
+                                     <h6 class="title font-size-14">Title Menu Six</h6>
+                                         <ul class="list-unstyled">
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                             <li class="nav-item font-size-12  py-1"><a class="dropdown-item text-small-case text-terquise" href="#">Custom Menu</a></li>
+                                         </ul>
+                                 </div><!-- end col-3 -->
+                             </div><!-- end row -->
+                          </div>
+                       </li>
+                   </ul>  
+                     <!--Nav left-->
+                </li> 
+            </ul>   
+     </div>
+          
+       </div>
+     
+             <!--Nav Center-->
+       <ul class="navbar-nav ">
+              
+          <li class="nav-item font-size-14 ">
+            <a class="nav-link text-white text-uppercase" href="../index.html">Home<span class="sr-only">(current)</span>  </a>
+          
+          </li>
+          <li class="nav-item font-size-14 ">
+            <a class="nav-link text-white text-uppercase" href="../html-snipets/shop.html">Shop</a>
+          </li> 
+          <li class="nav-item dropdown">
+            <a class="nav-link text-light text-uppercase font-size-14" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Pages <i class="icon-main fa-solid fa-angle-down"></i>
+            </a>
+            <ul class="dropdown-menu   bg-logo" aria-labelledby="navbarDropdown">
+              <li class="nav-item font-size-12  py-1">
+                <a class="dropdown-item text-small-case text-terquise  " href="#">Portfolio</a>
+                </li>
+              <li class="nav-item font-size-12  py-1">
+                <a class="dropdown-item text-small-case text-terquise  " href="#">Contact</a>
+                </li>
+              <li class="nav-item font-size-12  py-1">
+                <a class="dropdown-item text-small-case text-terquise  " href="#">FAQs</a>
+                </li>
+              <li class="nav-item font-size-12  py-1">
+                <a class="dropdown-item text-small-case text-terquise  " href="#">Our Stores</a>
+                </li>
+              <li class="nav-item font-size-12  py-1">
+                <a class="dropdown-item text-small-case text-terquise  " href="#">Terms and Conditions</a>
+                </li>
+              <li class="nav-item font-size-12  py-1">
+                <a class="dropdown-item text-small-case text-terquise  " href="#">Refund and Returns Policy</a>
+                </li>
+              
+            </ul>
+          </li>
+          <li class="nav-item font-size-14 ">
+              <a class="nav-link text-white text-uppercase" href="../html-snipets/Blog.html">Blog</a>
+            </li>
+                  
+       </ul>
+      <div class="nav-right d-flex  Action-buttons">
+              <ul class="navbar-nav  avator">
+                  <li class="nav-item font-size-12  py-1">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle avator-image" 
+                    height="50" alt="Avatar" loading="lazy" />
+                  </li>
+                </ul>
+          <ul class="nav-right d-flex navbar-nav action-links">
+              <li class="nav-item font-size-14  py-1 align-self-center">
+                  <a class="nav-link font-size-16  btn  text-light px-2 py-2  " href="#">User-NH</a>
+              </li>  
+              <li class="nav-item font-size-18 align-self-center border-righ-logo ">
+                  <a class="nav-link text-white" href="../html-snipets/cart.html"><i class="fas fa-shopping-cart"></i><sup class="bg-warning text-dark text-center px-1 py-1 " style="border-radius: 50%;">12</sup></a>
+              </li>   
+              <li class="nav-item font-size-12  py-1 align-self-center mx-2">
+                  <a class="bg-logo-right font-size-12  btn border-radius btn-border-radius btn-outline-info px-3 py-2 text-bold " href="./html-snipets/Wishlist.html"> Wishlist / Ksh 576 <i class="fas fa-heart"></i><sup class="bg-warning text-dark text-center px-1 py-1 " style="border-radius: 50%;">12</sup></a>
+              </li>    
+       </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- ! NAVIGATION --> 
+    <!-- section1 -->
+    <div class="bg-light-mini-nav py-3">
+        <div class="py-5 mb-4  p-5">
+            <h2 class="text-logo ml-4">Product View</h2>
+            <ul class="d-flex mb-4 ml-4">
+                <li class="ml-3">
+                    <a href="">Home</a>
+                </li>
+                <li class="ml-3">
+                    <div class="mini-nav-sepparrator"></div>
+                 </li>
+                <li class="ml-3">
+                    <a href="">Pages</aages>
+                </li>
+                <li class="ml-3">
+                   <div class="mini-nav-sepparrator"></div>
+                </li>
+                <li class="ml-3">
+                    <a href="#" class="text-terquise text-bold font-size-16">Product view</a>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+    <!-- /section1 -->
+
+    <div class="pd-wrap">
+		<div class="container-fluid">
+	       
+	        <div class="row container">
+	        	<div class="col-md-5">
+	        		<div id="slider" class="owl-carousel  product-carousel product-slider" ><!---->
+						<div class="item text-align-center">
+						  	<img src="../assets/phones/tecno-spark-5-front.jpg" class="img-fluid  h-50 w-75" />
+						</div>
+						<div class="item text-align-center">
+						  	<img src="../assets/phones/tecno-spark-5-back.jpg" class="img-fluid  h-50 w-75" />
+						</div>
+						<div class="item text-align-center">
+						  	<img src="../assets/phones/tecno-spark-5.jpg" class="img-fluid  h-50 w-75" />
+						</div>
+						
+					</div>
+					
+                    <div id="thumb" class="owl-carousel  product-carousel product-thumb mx-auto my-4 py-2">
+						<div class="item">
+                            <img src="../assets/phones/tecno-spark-5-front.jpg" class="img-fluid " />
+                      </div>
+                      <div class="item">
+                            <img src="../assets/phones/tecno-spark-5-back.jpg" class="img-fluid " />
+                      </div>
+                      <div class="item">
+                            <img src="../assets/phones/tecno-spark-5.jpg" class="img-fluid " />
+                      </div>
+						
+					</div>
+	        	</div>
+	        	<div class="col-md-7">
+	        		<div class="product-dtl">
+        				<div class="product-info">
+		        			<div class="product-name">
+                                <span class="text-left mb-o text-gray text-uppercase font-size-14">tecno</span>
+                                <h5 class="text-logo font-size-32    mt-0 opacity-alt text-bold">Techno Spark 5</h5>
+                            </div>
+		        			<div class="reviews-counter">
+								<div class="rate">
+								  <span class="text-warning"><i class="fa fa-star font-size-14"></i></span>
+								  <span class="text-warning"><i class="fa fa-star font-size-14"></i></span>
+								  <span class="text-warning"><i class="fa fa-star font-size-14"></i></span>
+								  <span class="text-gray"><i class="far fa-star font-size-14"></i></span>
+								  <span class="text-gray"><i class="far fa-star font-size-14"></i></span>
+								  </div>
+								<span class="font-size-14 text-gray ">3.2(271)|3 Reviews</span>
+							</div>
+		        			<div class="product-price-discount d-flex"><h5 class="font-size-24 text-logo text-bold mx-2"><sup class="font-size-14 text-success text-bold">Ksh</sup>39.00 (5%)</h5><span class="line-through align-self-center text-danger font-size-18">$29.00</span></div>
+                            <div class="row my-2">
+                               <div class="col-lg-12 col-md-12 col-xsm-12 col-sm-12 col-12">
+                                <div class="description my-1">
+                                    <h5 class="font-size-20 text-logo px-3 py-2 border-left-logo">About this product</h5>
+                                </div>
+                                <div class="description-body my-2">
+                                    <p class="text-gray verdana font-size-18">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus quod incidunt ab enim, consequuntur cupiditate fuga veritatis earum vero praesentium, magni harum nesciunt voluptates
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae enim incidunt, id voluptatibus fugiat tenetur libero aut placeat dolor, officiis doloremque aspernatur fuga impedit? Deleniti, a corrupti perspiciatis tempore eaque qui cumque fugit blanditiis labore voluptatem.
+                                    </p>
+                                </div>
+                               </div>
+                            </div>
+                            
+                            <div class="row my-2">
+                                <div class="col-md-6 my-2">
+                                    <label for="size">Size</label>
+                                    <select id="size" name="size" class="form-control cursor">
+                                        <option>S</option>
+                                        <option>M</option>
+                                        <option>L</option>
+                                        <option>XL</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 my-2">
+                                    <label for="color">Color</label>
+                                    <select id="color" name="color" class="form-control cursor">
+                                        <option>Blue</option>
+                                        <option>Green</option>
+                                        <option>Red</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-xsm-12 col-md-12 col-sm-12 my-2">
+                                <div class="text-left">
+                                    <div class="product_info-item d-flex my-2">
+                                        <span><i class="fas fa-check-circle font-size-18 text-success"></i></span>
+                                        <h5 class="font-size-14 align-self-center text-dark  text-bold text-left mx-2">Available: <span class="font-size-14 text-gray opacity-alt">Instock</span></h5>
+                                    </div>
+                                    <div class="product_info-item d-flex my-2">
+                                        <span><i class="fas fa-check-circle font-size-18 text-success"></i></span>
+                                        <h5 class="font-size-14 align-self-center text-dark  text-bold text-left mx-2">Category: <span class="font-size-14 text-gray opacity-alt">phones</span></h5>
+                                    </div>
+                                    <div class="product_info-item d-flex my-2">
+                                        <span><i class="fas fa-check-circle font-size-18 text-success"></i></span>
+                                        <h5 class="font-size-14 align-self-center text-dark  text-bold text-left mx-2">Shipping Area: <span class="font-size-14 text-gray opacity-alt">Nairobi</span></h5>
+                                    </div>
+                                    <div class="product_info-item d-flex my-2">
+                                        <span><i class="fas fa-check-circle font-size-18 text-success"></i></span>
+                                        <h5 class="font-size-14 align-self-center text-dark  text-bold text-left mx-2">Shipping fee: <span class="font-size-14 text-gray opacity-alt">FREE</span></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-count">
+                                <label for="size">Quantity</label>
+                                
+                                    <div class="form-items qty">
+                                        <div class=" d-flex ">
+                                            <button data-id="pro1" class="Qty_add border bg-light p-2"><i class="fas fa-plus"></i></button>
+                                            <input  data-id="pro1" type="text"  class=" Qty_input text-align-center border" disabled value="1" placeholder="1" class="Qty_input">
+                                            <button data-id="pro1" class="Qty_minus  border bg-light p-2  bg-light"><i class="fas fa-minus"></i></button>
+                                        </div>
+                                    </div>
+                                
+                               <div class="row my-2">
+                                <div class="col-lg-12 col-md-12 col-xsm-12 col-sm-12 my-2">
+
+                                    <div class=" py-2 mb-0">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-12 col-sm-6 col-xsm-12">
+                                                <a href="#" class="round-black-btn btn w-100"><i class="fa fa-shopping-cart text-warning"></i> Add to Cart</a>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 col-sm-6 col-xsm-12">
+                                                <a href="#" class="round-danger-btn btn w-100"><i class="far fa-heart text-info"></i> Add to wishlist</a>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 col-sm-6 col-xsm-12">
+                                                <a href="#" class="round-success-btn btn w-100 ">Go to Checkout</a>
+                                            </div>
+                                        </div>
+                                       
+                                      
+                                       
+                                   </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-xsm-12 col-sm-12 my-2">
+                                    <div class="Social w-100 mx-3 my-4">
+                                        <div class="social-title text-left">
+                                            <h5 class="align-self-center font-size-24 text-logo text-bold px-3 py-2">Share on</h5>
+                                        </div>
+                    
+                                        <div class="row  px-2">
+                                          
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xsm-6 my-2">
+                                                <a href="#" class="font-size-20 btn btn-info text-logo px-1 py-1 w-100"><i class="fa-brands fa-facebook-f"></i></a>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xsm-6 my-2">
+                                                <a href="#" class="font-size-20 btn btn-outline-danger  text-logo px-1 py-1 w-100"><i class="fa-brands fa-twitter"></i></a>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xsm-6 my-2">
+                                                <a href="#" class="font-size-20 btn btn-secondary text-logo px-1 py-1 w-100"><i class="fa-brands fa-instagram"></i></a>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xsm-6 my-2">
+                                                <a href="#" class="font-size-20 btn btn-warning text-logo px-1 py-1 w-100"><i class="fa-brands fa-pinterest"></i></a>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xsm-6 my-2">
+                                                <a href="#" class="font-size-20 btn btn-danger text-logo px-1 py-1 w-100"><i class="fa-brands fa-youtube"></i></a>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xsm-6 my-2">
+                                                <a href="#" class="font-size-20 btn btn-success text-logo px-1 py-1 w-100"><i class="fa-brands fa-whatsapp"></i></a>
+                                            </div>
+                                          
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                               </div>
+                            </div>
+                        </div>
+	        		</div>
+	        	</div>
+	        </div>
+	        <div class="product-info-tabs">
+		        <ul class="nav nav-tabs" id="myTab" role="tablist">
+				  	<li class="nav-item">
+				    	<a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
+				  	</li>
+				  	<li class="nav-item">
+				    	<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews (0)</a>
+				  	</li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+				  	<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+				  		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
+				  	</div>
+				  	<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+				  		<div class="review-heading">REVIEWS</div>
+				  		<p class="mb-20">There are no reviews yet.</p>
+				  		<form class="review-form">
+		        			<div class="form-group">
+			        			<label>Your rating</label>
+			        			<div class="reviews-counter">
+									<div class="rate">
+                                        <input type="radio" id="star5" name="rate" value="5" checked />
+                                        <label for="star5" title="text">5 stars</label>
+                                        <input type="radio" id="star4" name="rate" value="4" checked />
+                                        <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" name="rate" value="3" checked />
+                                        <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" name="rate" value="2" />
+                                        <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" name="rate" value="1" />
+                                        <label for="star1" title="text">1 star</label>
+                                      </div>
+								</div>
+							</div>
+		        			<div class="form-group">
+			        			<label>Your message</label>
+			        			<textarea class="form-control" rows="10"></textarea>
+			        		</div>
+			        		<div class="row my-3">
+				        		<div class="col-md-6 my-2">
+				        			<div class="form-group">
+					        			<input type="text" name="" class="form-control" placeholder="Name*">
+					        		</div>
+					        	</div>
+				        		<div class="col-md-6 my-2">
+				        			<div class="form-group">
+					        			<input type="text" name="" class="form-control" placeholder="Email Id*">
+					        		</div>
+					        	</div>
+					        </div>
+					        <button class="round-black-btn">Submit Review</button>
+			        	</form>
+				  	</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+
+
+      <!-- Top Sales -->
+      <div class="container-fluid py-5">
+        <!-- Title-->
+        <div class=" mb-4   align-self-center text-align-center">
+          <div class="d-flex logo_border text-align-center ">
+              <h5 class="first josefine font-size-28 opacity-alt text-gray text-uppercase text-bold">Top</h5>
+              <h5 class=" second josefine font-size-28 text-logo text-uppercase text-bold">Categories</h5>
+          </div>
+      </div> 
+      <!-- !Title-->
+
+     <!-- Body -->
+     <div class="top_sales align-text-center">
+      <div class="owl-carousel owl-theme ">
+        
+        <div class="sales">
+          <div class="product-item ">
+              <div class="sales-content">
+                  <a href="#">
+                   <img src="../assets/cloths/modernkitenge.png" alt="Product-image" class="img-fluid">
+                  </a>
+              </div>
+             <div class="sales-body text-align-center text-center">
+              <div class="sales-title">
+                  <h5 class="text-bold text-mignight mt-4 font-size-16">beanie</h6>
+              </div>
+              <div class="sales-price">
+                  <h5 class=" text-gray font-size-14  text-center">
+                      <span>KSH 9,500</span>
+                  </h5>
+              </div>
+             </div>
+         </div>
+        </div>
+        <div class="sales ">
+          <div class="product-item ">
+              <div class="sales-content">
+                  <a href="#">
+                   <img src="../assets/cloths/kiddo_wear.png" alt="Product-image" class="img-fluid">
+                  </a>
+              </div>
+             <div class="sales-body text-align-center text-center">
+              <div class="sales-title">
+                  <h5 class="text-bold text-mignight mt-4 font-size-16">beanie2</h6>
+              </div>
+              
+              <div class="sales-price">
+                  <h5 class=" text-gray font-size-14  text-center">
+                      <span> KSH 9,500</span>
+                  </h5>
+              </div>
+             </div>
+         </div>
+        </div>
+        <div class="sales ">
+          <div class="product-item">
+              <div class="sales-content">
+                  <a href="#">
+                   <img src="../assets/cloths/manxhatxkit.png" alt="Product-image" class="img-fluid">
+                  </a>
+              </div>
+             <div class="sales-body text-align-center text-center">
+              <div class="sales-title">
+                  <h5 class="text-bold text-mignight mt-4 font-size-16">scarf</h6>
+              </div>
+              <div class="sales-price">
+                  <h5 class=" text-gray font-size-14  text-center">
+                      <span>KSH 9,500</span> 
+                  </h5>
+              </div>
+             </div>
+         </div>
+        </div>
+
+        <div class="sales ">
+          <div class="product-item">
+              <div class="sales-content">
+                  <a href="#">
+                   <img  src="../assets/cloths/greenkitengewear.png" alt="Product-image" class="img-fluid">
+                  </a>
+              </div>
+             <div class="sales-body text-align-center text-center">
+              <div class="sales-title">
+                  <h5 class="text-bold text-mignight mt-4 font-size-16">scarf</h6>
+              </div>
+              <div class="sales-price">
+                  <h5 class=" text-gray font-size-14 text-center">
+                      <span>KSH 9,500</span> 
+                  </h5>
+              </div>
+             </div>
+         </div>
+        </div>
+       
+       
+          
+        
+      </div>
+  </div>
+  <!-- !Body -->
+
+  </div>
+
+  <!-- Newsletter-->
+  <div class="mt-3 news-letter">
+       <div class="container text-align-center py-5 mt-3">
+         <div class="align-self-center my-5 mt-2 text-left">
+          <h5 class="font-size-24 mb-0 text-light text-bold">Get Latest Updates by</h5>
+          <h5 class="font-size-28 mt-0 text-light text-bold open-sans">Subscribing to our news latters</h5>
+         </div>
+         <div class="subscribe_button my-3 py-2 text-center">
+          <form action="" method="post">
+              <div class="form-item my-1">
+                  <button type="submit" class="btn btn-outline-info px-3 py-2 text-bold font-size-16 cursor"> Shop now</button>
+              </div>
+          </form>
+         </div>
+       </div>
+  </div>
+  <!-- !Newsletter-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--scroll to top and Page progress Bar-->
+      
+<button class="btn btn-primary scroll-top bg-logo box-shadow border-radius-circle" data-scroll="up" type="button">
+    <i class="fa-solid fa-arrow-up"></i>
+    </button>
+  
+    <!--!scroll to top and Page progress Bar-->
+  
+       <!--Add to Cart-->
+    <div class="cd-cart cd-cart--empty js-cd-cart ">
+      <a href="#0" class="cd-cart__trigger text-replace">
+      
+          <ul class="cd-cart__count"> <!-- cart items count -->
+              <li>0</li>
+              <li>0</li>
+          </ul> <!-- .cd-cart__count -->
+      </a>
+  
+      <div class="cd-cart__content ">
+          <div class="cd-cart__layout">
+              <header class="cd-cart__header bg-light">
+                  <h2 class="font-size-16 text-logo ">My Cart</h2>
+                  <span class="cd-cart__undo">Item removed. <a href="#0" class="text-logo cursor font-size-14">Undo</a></span>
+              </header>
+              
+              <div class="cd-cart__body bg-light">
+                  <ul class="border-bottom my-4">
+                      <!-- products added to the cart will be inserted here using JavaScript -->
+                  </ul>
+              </div>
+  
+              <footer class="cd-cart__footer bg-logo">
+                  <a href="#0" class="cd-cart__checkout text-logo btn-outline-success">
+                <em>Checkout - Ksh.<span>0</span>
+                <!-- <svg class="icon icon--sm" viewBox="0 0 24 24"><g fill="none" stroke="currentColor"><line stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x1="3" y1="12" x2="21" y2="12"/><polyline stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="15,6 21,12 15,18 "/></g>
+                </svg> -->
+                </em>
+          </a>
+              </footer>
+          </div>
+      </div> <!-- .cd-cart__content -->
+  </div> <!-- cd-cart --> 
+       <!--Add to Cart-->
+  
+  <!-- Footer-->
+  
+  <div class="footer text-white  h-100">
+    <div class="container-fluid py-2">
+        <div class="row">
+               <div class="col-lg-4">
+                <div class="yene_foot">
+                    <img src="../assets/Logo/Yene_logo.png" style="height:100px;" alt="yena logo" class="img-fluid" >
+                  </div>
+                  <form action="" method="post">
+                    <div class="input-group ">
+                        <input type="email" name="Email_newslater" id="Email_newslater" class="form-control" placeholder=" Enter Email Address " required name="email">
+                        <button type="submit" class="btn btn-info border-circle-left-0">Sign Up</button>
+                    </div>
+                </form>
+                 <p class="text-white py-4 mb-2">17th street, Jogoo Road, Nairobi</p>
+                 <h4 class="mt-4">Payment Methods</h4>
+                  <div class="pay_methods">
+                    <a href="#"><img src="../assets/Logo/lipa na Mpesa.png" style="height:30px;" alt="lipa na Mpesa"></a>
+                    <a href="#"><img src="../assets/Logo/paypal.png" style="height:100px;" alt="lipa na Mpesa"></a>
+                  </div>
+               </div>
+               <div class="col-lg-8">
+                  <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xsm-12 col-12">
+                        <div class="cont">
+                            <h5 class="text-white  py-4 px-2">Categories</h5>
+                            <p class=" font-size-14  my-4 mx-2 "><a href="#"class="text-light py-1 ">Fashion & Accessories</a></p>
+                            <p class=" font-size-14  my-4 mx-2 "><a href="#"class="text-light py-1 ">Waterproof Headphones</a></p>
+                            <p class=" font-size-14  my-4 mx-2"><a href="#" class="text-light py-1 ">Smartphones & Tablets</a></p>
+                            <p class=" font-size-14  my-4 mx-2"><a href="#" class="text-light py-1 ">Cameras & Photography</a></p>
+                            <p class=" font-size-14  my-4 mx-2"><a href="#" class="text-light py-1 ">Laptops & Computers</a></p>
+                          
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-3 col-sm-6 col-xsm-12 col-12">
+                        <div class=" cont">
+                            <h5 class="text-white  py-4 px-2">Customer Care</h5>
+                            <p class=" font-size-14 my-4 mx-2"><a href="#" class="text-light py-1 ">My account</a></p>
+                            <p class=" font-size-14 my-4 mx-2"><a href="../html-snipets/contact_us.html" class="text-light py-1 " id="contact-us">Contact Us</a></p>
+                            <p class=" font-size-14 my-4 mx-2"><a href="#" class="text-light py-1 ">How to Sell on Yene</a></p>
+                            <p class=" font-size-14 my-4 mx-2"><a href="#" class="text-light py-1 ">How to Shop on Yene</a></p>
+                            <p class=" font-size-14 my-4 mx-2"><a href="#" class="text-light py-1 ">Return Policy</a></p>
+                            <p class=" font-size-14 my-4 mx-2"><a href="#" class="text-light py-1 ">Order History</a></p>
+                            <p class=" font-size-14 my-4 mx-2"><a href="#" class="text-light py-1 ">Order Tracking</a></p>
+                          
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-3 col-sm-6 col-xsm-12 col-12">
+                        <div class=" cont">
+                            <h5 class="text-white  py-4 px-2">Stay Connected</h5>
+                             
+                            <ul class="navbar-nav mx-2">
+                                <li class="nav-item font-size-20 align-left">
+                                    <a class="nav-link text-white" href=""><i class="fa-brands text-danger fa-facebook"></i><span class="font-size-14 mx-2">Facebook</span> </a>
+                                </li>
+                                <li class="nav-item font-size-20 align-left">
+                                    <a class="nav-link text-white" href=""><i class="fa-brands text-warning fa-instagram"></i> <span class="font-size-14 mx-2">Instagram</span></a>
+                                </li>
+                                <li class="nav-item font-size-20 align-left">
+                                    <a class="nav-link text-white" href=""><i class="fa-brands fa-pinterest"></i > <span class="font-size-14 mx-2">Pinterest</span></a>
+                                </li>
+                                <li class="nav-item font-size-20 align-left">
+                                    <a class="nav-link text-white" href=""><i class="fa-brands text-info fa-youtube"></i> <span class="font-size-14 mx-2">Youtube</span></a>
+                                </li>
+                                <li class="nav-item font-size-20 align-left">
+                                    <a class="nav-link text-white" href=""><i class="fa-brands text-success fa-whatsapp"></i> <span class="font-size-14 mx-2">Whatsapp</span></a>
+                                </li>
+                            </ul>
+                        
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-3 col-sm-6 col-xsm-12 col-12">
+                        <div class="cont">
+                            <h5 class="text-white  py-4 px-2">About Yene</h5>
+                            <p class=" font-size-14 my-4 mx-2"><a href="./html-snipets/about_us.html" class="text-light py-1 " id="about-us">About Us</a></p>
+                            <p class=" font-size-14 my-4 mx-2"><a href="#" class="text-light py-1 ">Terms and Conditions</a></p>
+                            <p class=" font-size-14 my-4 mx-2"><a href="#" class="text-light py-1 ">Privacy and Cookie notice</a></p>
+                          
+                          
+                        </div>
+                      </div>
+                    
+                  </div>
+                 
+               </div>
+        </div>
+       
+    </div>
+    <div class="copyrite text-center opacity bg-midnight py-1 mt-3">
+        <p class="text-white font-size-12 my-2"> Copyright &copy; 2022 All rights reserved| made by 
+            <a class="text-info abel" href="#" target="_black"> Tanz Tech Solutions EA ltd</a></p>
+    </div>
+  </div>
+  
+
+    <!-- Scripts-->
+    <script>
+        // slider 
+    var slideIndex = 1;
+		showSlides(slideIndex);
+
+		function plusSlides(n) {
+				showSlides(slideIndex += n);
+			}
+
+		function currentSlide(n) {
+				showSlides(slideIndex = n);
+			}
+
+		function showSlides(n) {
+			var i;
+			var slides = document.getElementsByClassName("mySlides");
+			var dots = document.getElementsByClassName("dot");
+			if (n > slides.length) { slideIndex = 1 }
+			if (n < 1) { slideIndex = slides.length }
+			for (i = 0; i < slides.length; i++) {
+				slides[i].style.display = "none";
+			}
+			for (i = 0; i < dots.length; i++) {
+				dots[i].className = dots[i].className.replace(" active", "");
+			}
+			slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+   // paypal 
+   
+    // paypal.Buttons().render('#paypal-button-container');
+    // // This function displays Smart Payment Buttons on your web page.
+  
+   
+    </script>
+    <!-- !Scripts-->
+
+    <!-- script links-->
+     <!--Bootsrap script-->
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> 
+     <script src="../js/addtocart.js"></script>
+     <!-- slick -->
+     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+      <!--Bootstrap show password-->
+      <script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
+ 
+     <!--jquery library file --> 
+    <script src="../js/jqueryv3.5.1.min.js"></script>
+ 
+ 
+    <!-----owl-carosel--js--->
+    <script src="../js/owl.carousel.min.js"></script>
+ 
+    <!------AOS js Library-------------------->
+     <script src="../js/aos.js"></script>
+ 
+    <!-- Paypal scripts-->
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AV2EaJtLuO1TjP-EjHHraAxTSQ-Nq9wIXabUfGFDTmNHSIVN6tYyt61scCAUbtQJm41XhhzwC6NYmeI3"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+    </script>
+ 
+     <!--Isotope js library-->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
+ 
+     <!--magnific-popup js_script-->
+     <!-- <script src="../Vendor/Magnific-Popup/Magnific-Popup/dist/jquery.magnific-popup.min.js"></script> -->
+ 
+     <!--custom js code-->
+     <script src="../js/main.js"></script> 
+     <script src="../js/Submain.js"></script>
+     <!-- <script src="../js/product_view.js"></script> -->
+     
+    <!-- !script links-->
+    
+    
+</body>
+</html>
