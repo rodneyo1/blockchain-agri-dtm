@@ -20,19 +20,15 @@ func main() {
 	}
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static")))) // fs := http.FileServer(http.Dir("static"))
 	// assets := http.FileServer(http.Dir("assets"))
+	http.HandleFunc("/home", Bitcoin.Home)
 	http.HandleFunc("/checkout", Bitcoin.Checkout)
 	http.HandleFunc("/login", Bitcoin.HandleLogin)
 	http.HandleFunc("/registeration", Bitcoin.HandlerRegisterPAge)
 	http.HandleFunc("/register", Bitcoin.HandleRegister)
-    // http.HandleFunc("/login", Bitcoin.HandleLogin)
-	// http.HandleFunc("/ascii-art", Bitcoin.Art)
-	// http.Handle("/static/", http.StripPrefix("/assets/static/", fs))
-	// http.Handle("/assets/", http.StripPrefix("/assets/", assets))
-	// http.HandleFunc("/about", Bitcoin.About)
-	// http.HandleFunc("/instructions", Bitcoin.Instructions)
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case "/", "/home":
+		case "/", "/login":
 			Bitcoin.Home(w, r)
 		default:
 			// Bitcoin.ErrorPage(w, http.StatusNotFound, "404 - Not Found")

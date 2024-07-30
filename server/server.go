@@ -24,11 +24,20 @@ type UserID struct {
 
 var mu sync.Mutex
 
+// func Login(w http.ResponseWriter, r *http.Request) {
+// 	if r.Method!=http.MethodGet{
+// 			ErrorPage(w,http.StatusNotFound,"Not found")
+// 	}
+// 	home := template.Must(template.ParseFiles("./web/templates/login.html"))
+// 	w.WriteHeader(http.StatusOK)
+
+// 	home.Execute(w, nil)
+// }
 func Home(w http.ResponseWriter, r *http.Request) {
 	if r.Method!=http.MethodGet{
 			ErrorPage(w,http.StatusNotFound,"Not found")
 	}
-	home := template.Must(template.ParseFiles("./web/templates/login.html"))
+	home := template.Must(template.ParseFiles("./web/templates/index.html"))
 	w.WriteHeader(http.StatusOK)
 
 	home.Execute(w, nil)
