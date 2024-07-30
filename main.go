@@ -28,7 +28,7 @@ func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case "/", "/login":
+		case "/":
 			Bitcoin.Home(w, r)
 		default:
 			// Bitcoin.ErrorPage(w, http.StatusNotFound, "404 - Not Found")

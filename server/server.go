@@ -5,7 +5,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
+	"os"
 	"sync"
 	"text/template"
 	// functions "server/functions"
@@ -19,7 +21,7 @@ type UserID struct {
 	Password  string `json:"password"`
 	Location  string `json:"location"`
 	Contract  string `json:"mobile"`
-	Gender  string `json:"gender"`
+	Gender    string `json:"gender"`
 }
 
 var mu sync.Mutex
@@ -31,13 +33,17 @@ var mu sync.Mutex
 // 	home := template.Must(template.ParseFiles("./web/templates/login.html"))
 // 	w.WriteHeader(http.StatusOK)
 
-// 	home.Execute(w, nil)
-// }
+//		home.Execute(w, nil)
+//	}
 func Home(w http.ResponseWriter, r *http.Request) {
-	if r.Method!=http.MethodGet{
-			ErrorPage(w,http.StatusNotFound,"Not found")
+	if r.Method != http.MethodGet {
+		ErrorPage(w, http.StatusNotFound, "Not found")
 	}
-	home := template.Must(template.ParseFiles("./web/templates/index.html"))
+	
+	home,err := template.New("index").ParseFiles("./web/templates/index.html")
+	if err!=nil{
+		ErrorPage(w,http.StatusNotFound,"404 not found")
+	}
 	w.WriteHeader(http.StatusOK)
 
 	home.Execute(w, nil)
@@ -54,9 +60,9 @@ func ErrorPage(w http.ResponseWriter, statusCode int, message string) {
 }
 
 func Checkout(w http.ResponseWriter, r *http.Request) {
-	if r.Method!=http.MethodGet{
-		ErrorPage(w,http.StatusNotFound,"Not found")
-}
+	if r.Method != http.MethodGet {
+		ErrorPage(w, http.StatusNotFound, "Not found")
+	}
 	home, err := template.New("checkout.html").ParseFiles("./web/templates/checkout.html")
 	if err != nil {
 		ErrorPage(w, http.StatusNotFound, "Not found")
@@ -66,12 +72,6 @@ func Checkout(w http.ResponseWriter, r *http.Request) {
 	home.Execute(w, nil)
 }
 
-//	func ErrorPage(w http.ResponseWriter, statusCode int, message string) {
-//		tmpl := template.Must(template.ParseFiles("./web/template/error.html"))
-//		w.WriteHeader(statusCode)
-//		data := ascii{Error: message}
-//		tmpl.Execute(w, data)
-//	}
 func HandlerRegisterPAge(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		ErrorPage(w, http.StatusInternalServerError, "400 Bad Request")
@@ -86,14 +86,14 @@ func HandlerRegisterPAge(w http.ResponseWriter, r *http.Request) {
 	Register.Execute(w, nil)
 }
 
-func HandleLogin(w http.ResponseWriter,r *http.Request){
-login,err:=template.New("login.html").ParseFiles("./web/templates/login.html")
-if err!=nil{
-	ErrorPage(w,http.StatusNotFound,"Not Found")
-	return
-}
-login.Execute(w,nil)
-}
+// func HandleLogin(w http.ResponseWriter,r *http.Request){
+// login,err:=template.New("login.html").ParseFiles("./web/templates/login.html")
+// if err!=nil{
+// 	ErrorPage(w,http.StatusNotFound,"Not Found")
+// 	return
+// // }
+// login.Execute(w,nil)
+// }
 
 func HandleRegister(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
@@ -115,7 +115,7 @@ func HandleRegister(w http.ResponseWriter, r *http.Request) {
 	// 	ErrorPage(w,http.StatusBadRequest,"Bad Request")
 	// 	return
 	// }
-	
+
 	// fmt.Println("this")
 	err = RegisterUser("users.json", user)
 	if err != nil {
@@ -125,35 +125,36 @@ func HandleRegister(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintln(w, "User registered successfully")
+	HandleLogin(w, nil)
 }
 
-// func HandleLogin(w http.ResponseWriter, r *http.Request) {
-// 	if r.Method != http.MethodPost {
-// 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
-// 		return
-// 	}
+func HandleLogin(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+		return
+	}
 
-// 	var user UserID
-// 	err := json.NewDecoder(r.Body).Decode(&user)
-// 	if err != nil {
-// 		http.Error(w, "Bad request", http.StatusBadRequest)
-// 		return
-// 	}
+	var user UserID
+	err := json.NewDecoder(r.Body).Decode(&user)
+	if err != nil {
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
 
-// 	authenticated, err := AuthenticateUsers("users.json", user.Username, user.Password)
-// 	if err != nil {
-// 		http.Error(w, err.Error(), http.StatusInternalServerError)
-// 		return
-// 	}
+	authenticated, err := AuthenticateUsers("users.json", user.Username, user.Password)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
-// 	if !authenticated {
-// 		http.Error(w, "Invalid credentials", http.StatusUnauthorized)
-// 		return
-// 	}
+	if !authenticated {
+		http.Error(w, "Invalid credentials", http.StatusUnauthorized)
+		return
+	}
 
-// 	w.WriteHeader(http.StatusOK)
-// 	fmt.Fprintln(w, "Login successful")
-// }
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprintln(w, "Login successful")
+}
 
 func RegisterUser(filename string, newUser UserID) error {
 	mu.Lock()
@@ -178,28 +179,28 @@ func RegisterUser(filename string, newUser UserID) error {
 	return WriteUsersToFile(filename, users)
 }
 
-// func AuthenticateUsers(filename, username, password string) (bool, error) {
-// 	mu.Lock()
-// 	defer mu.Unlock()
+func AuthenticateUsers(filename, username, password string) (bool, error) {
+	mu.Lock()
+	defer mu.Unlock()
 
-// 	file, err := os.Open(filename)
-// 	if err != nil {
-// 		return false, err
-// 	}
-// 	defer file.Close()
+	file, err := os.Open(filename)
+	if err != nil {
+		return false, err
+	}
+	defer file.Close()
 
-// 	var users []UserID
-// 	decoder := json.NewDecoder(file)
-// 	err = decoder.Decode(&users)
-// 	if err != nil && err != io.EOF {
-// 		return false, err
-// 	}
+	var users []UserID
+	decoder := json.NewDecoder(file)
+	err = decoder.Decode(&users)
+	if err != nil && err != io.EOF {
+		return false, err
+	}
 
-// 	for _, user := range users {
-// 		if user.Username == username && user.Password == password {
-// 			return true, nil
-// 		}
-// 	}
+	for _, user := range users {
+		if user.Username == username && user.Password == password {
+			return true, nil
+		}
+	}
 
-// 	return false, nil
-// }
+	return false, nil
+}
