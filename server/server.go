@@ -14,16 +14,16 @@ import (
 )
 
 type UserID struct {
-    Username string `json:"username"`
-    Password string `json:"password"`
+	Username string `json:"username"`
+	Password string `json:"password"`
 }
 
 type ascii struct {
 	AsciiArt string
 	Error    string
 }
-var mu sync.Mutex
 
+var mu sync.Mutex
 
 func Home(w http.ResponseWriter, r *http.Request) {
 	home := template.Must(template.ParseFiles("./web/templates/login.html"))
@@ -82,7 +82,7 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	authenticated, err := authenticateUser("users.json", user.Username, user.Password)
+	authenticated, err := AuthenticateUsers("users.json", user.Username, user.Password)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -133,28 +133,28 @@ func RegisterUser(filename string, newUser UserID) error {
 	return nil
 }
 
-func AuthenticateUser(filename, username, password string) (bool, error) {
-    mu.Lock()
-    defer mu.Unlock()
+func AuthenticateUsers(filename, username, password string) (bool, error) {
+	mu.Lock()
+	defer mu.Unlock()
 
-    file, err := os.Open(filename)
-    if err != nil {
-        return false, err
-    }
-    defer file.Close()
+	file, err := os.Open(filename)
+	if err != nil {
+		return false, err
+	}
+	defer file.Close()
 
-    var users []UserID
-    decoder := json.NewDecoder(file)
-    err = decoder.Decode(&users)
-    if err != nil && err != io.EOF {
-        return false, err
-    }
+	var users []UserID
+	decoder := json.NewDecoder(file)
+	err = decoder.Decode(&users)
+	if err != nil && err != io.EOF {
+		return false, err
+	}
 
-    for _, user := range users {
-        if user.Username == username && user.Password == password {
-            return true, nil
-        }
-    }
+	for _, user := range users {
+		if user.Username == username && user.Password == password {
+			return true, nil
+		}
+	}
 
-    return false, nil
+	return false, nil
 }
