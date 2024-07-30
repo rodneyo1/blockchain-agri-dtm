@@ -1,0 +1,186 @@
+<html><head><base href="https://agrilink.co.ke/"><title>AgriLink - Kenya's Decentralized Marketplace for Farm Inputs and Produce</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f8ea;
+        color: #333;
+    }
+    header {
+        background-color: #4CAF50;
+        color: white;
+        text-align: center;
+        padding: 1em;
+    }
+    nav {
+        background-color: #45a049;
+        padding: 0.5em;
+    }
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+    nav ul li {
+        margin: 0 1em;
+    }
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+    }
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2em;
+    }
+    .marketplace {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2em;
+    }
+    .item {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        padding: 1em;
+        transition: transform 0.3s ease;
+    }
+    .item:hover {
+        transform: translateY(-5px);
+    }
+    .item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+    .item h3 {
+        margin-top: 0.5em;
+    }
+    .item p {
+        color: #666;
+    }
+    .item button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 0.5em 1em;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .item button:hover {
+        background-color: #45a049;
+    }
+    footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 1em;
+        margin-top: 2em;
+    }
+</style></head><body>
+    <header>
+        <h1>AgriLink</h1>
+        <p>Kenya's Decentralized Marketplace for Farm Inputs and Produce</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="https://agrilink.co.ke/marketplace">Marketplace</a></li>
+            <li><a href="https://agrilink.co.ke/farmers">For Farmers</a></li>
+            <li><a href="https://agrilink.co.ke/businesses">For Businesses</a></li>
+            <li><a href="https://agrilink.co.ke/about">About Us</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Featured Items</h2>
+        <div class="marketplace">
+            <div class="item">
+                <img src="https://agrilink.co.ke/images/fertilizer.jpg" alt="Bags of organic fertilizer" width="250" height="200">
+                <h3>Organic Fertilizer</h3>
+                <p>High-quality organic fertilizer for sustainable farming</p>
+                <p>Price: KES 2,500 per 50kg bag</p>
+                <button>Buy Now</button>
+            </div>
+            <div class="item">
+                <img src="https://agrilink.co.ke/images/maize.jpg" alt="Fresh maize cobs" width="250" height="200">
+                <h3>Fresh Maize</h3>
+                <p>Locally grown, non-GMO maize ready for purchase</p>
+                <p>Price: KES 50 per kg</p>
+                <button>Buy Now</button>
+            </div>
+            <div class="item">
+                <img src="https://agrilink.co.ke/images/seeds.jpg" alt="Variety of vegetable seeds" width="250" height="200">
+                <h3>Vegetable Seed Mix</h3>
+                <p>Assorted vegetable seeds for your home garden</p>
+                <p>Price: KES 500 per pack</p>
+                <button>Buy Now</button>
+            </div>
+            <div class="item">
+                <img src="https://agrilink.co.ke/images/tomatoes.jpg" alt="Fresh ripe tomatoes" width="250" height="200">
+                <h3>Fresh Tomatoes</h3>
+                <p>Juicy, ripe tomatoes from local farmers</p>
+                <p>Price: KES 100 per kg</p>
+                <button>Buy Now</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 AgriLink. All rights reserved.</p>
+    </footer>
+    <script>
+        // Simple JavaScript to handle buy button clicks
+        document.querySelectorAll('.item button').forEach(button => {
+            button.addEventListener('click', function() {
+                const itemName = this.parentElement.querySelector('h3').textContent;
+                alert(`Thank you for your interest in ${itemName}. This feature is coming soon!`);
+            });
+        });
+
+        // Simulating a decentralized marketplace connection
+        class DecentralizedMarketplace {
+            constructor() {
+                this.connected = false;
+            }
+
+            connect() {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        this.connected = true;
+                        console.log("Connected to the decentralized network");
+                        resolve(true);
+                    }, 2000);
+                });
+            }
+
+            listItem(item) {
+                if (!this.connected) {
+                    console.error("Not connected to the network");
+                    return;
+                }
+                console.log(`Listed item: ${JSON.stringify(item)}`);
+            }
+
+            buyItem(itemId) {
+                if (!this.connected) {
+                    console.error("Not connected to the network");
+                    return;
+                }
+                console.log(`Initiated purchase for item ID: ${itemId}`);
+            }
+        }
+
+        const marketplace = new DecentralizedMarketplace();
+        marketplace.connect().then(() => {
+            console.log("AgriLink is ready for transactions");
+        });
+
+        // Example of listing an item (this would typically be done through a user interface)
+        // marketplace.listItem({name: "Organic Tomatoes", price: 80, unit: "kg", farmerId: "F12345"});
+
+        // Example of buying an item (this would typically be triggered by user action)
+        // marketplace.buyItem("ITEM12345");
+    </script>
+</body></html>
