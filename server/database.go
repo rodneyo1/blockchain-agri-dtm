@@ -35,7 +35,6 @@ func ReadUsers(filePath string) ([]UserID, error) {
 }
 
 func WriteUsersToFile(filePath string, users []UserID) error {
-	fmt.Println(users[len(users)-1])
 	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_TRUNC|os.O_CREATE, 0o644)
 	if err != nil {
 		return err

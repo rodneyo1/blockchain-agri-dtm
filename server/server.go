@@ -91,7 +91,15 @@ func HandleRegister(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
 	}
+	r.ParseForm()
 	var user UserID
+	user.Firstname = r.FormValue("first")
+	user.Lastname = r.FormValue("last")
+	user.Email = r.FormValue("email")
+	user.Username = r.FormValue("username")
+	user.Password = r.FormValue("password")
+	user.Contract = r.FormValue("mobile")
+	user.Gender = r.FormValue("gender")
 	err := json.NewDecoder(r.Body).Decode(&user)
 	fmt.Println(err)
 	// if err != nil {
