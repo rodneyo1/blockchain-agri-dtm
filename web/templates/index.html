@@ -1,4 +1,11 @@
-<html><head><base href="/"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AgriLink - Your Agricultural Marketplace</title><style>
+<html>
+    <head>
+        <base href="/">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AgriLink - Your Agricultural Marketplace</title>
+        <script src="https://cdn.ethers.io/lib/ethers-5.6.umd.min.js"></script>
+        <style>
     body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -85,50 +92,75 @@
     </header>
     <main>
         <div class="product">
-            <img src="https://agrilink.com/images/tomatoes.jpg" alt="Fresh red tomatoes in a wooden crate" width="200" height="200">
+            <img src="static/Untitled.jpeg" alt="Fresh red tomatoes in a wooden crate" width="200" height="200">
             <div class="product-info">
                 <p class="seller">Green Thumb Farms</p>
-                <button class="buy-btn" onclick="location.href='/checkout?product=tomatoes'">Buy Now</button>
+                <button class="buy-btn" id="buyButton">Buy Now</button>
             </div>
         </div>
         <div class="product">
-            <img src="https://agrilink.com/images/carrots.jpg" alt="Bunch of organic carrots with green tops" width="200" height="200">
+            <img src="static/Untitled2.jpeg" alt="Bunch of organic carrots with green tops" width="200" height="200">
             <div class="product-info">
                 <p class="seller">Root Vegetable Co.</p>
-                <button class="buy-btn" onclick="location.href='/checkout?product=carrots'">Buy Now</button>
+                <button class="buy-btn" id="buyButton" >Buy Now</button>
             </div>
         </div>
         <div class="product">
-            <img src="https://agrilink.com/images/apples.jpg" alt="Red apples in a wicker basket" width="200" height="200">
+            <img src="static/Untitled3.jpeg" alt="Red apples in a wicker basket" width="200" height="200">
             <div class="product-info">
                 <p class="seller">Orchard Delights</p>
-                <button class="buy-btn" onclick="location.href='/checkout?product=apples'">Buy Now</button>
+                <button class="buy-btn  id="buyButton">Buy Now</button>
             </div>
         </div>
         <div class="product">
-            <img src="https://agrilink.com/images/lettuce.jpg" alt="Fresh green lettuce heads" width="200" height="200">
+            <img src="static/Untitled4.jpeg" alt="Fresh green lettuce heads" width="200" height="200">
             <div class="product-info">
                 <p class="seller">Leafy Greens Farm</p>
-                <button class="buy-btn" onclick="location.href='/checkout?product=lettuce'">Buy Now</button>
+                <button class="buy-btn" id="buyButton" >Buy Now</button>
             </div>
         </div>
         <div class="product">
-            <img src="https://agrilink.com/images/potatoes.jpg" alt="Russet potatoes in a burlap sack" width="200" height="200">
+            <img src="static/Untitled5.jpeg" alt="Russet potatoes in a burlap sack" width="200" height="200">
             <div class="product-info">
                 <p class="seller">Spud Masters</p>
-                <button class="buy-btn" onclick="location.href='/checkout?product=potatoes'">Buy Now</button>
+                <button class="buy-btn" id="buyButton" >Buy Now</button>
             </div>
         </div>
         <div class="product">
-            <img src="https://agrilink.com/images/strawberries.jpg" alt="Fresh ripe strawberries in a punnet" width="200" height="200">
+            <img src="static/Untitled6.jpeg" alt="Fresh ripe strawberries in a punnet" width="200" height="200">
             <div class="product-info">
                 <p class="seller">Berry Good Farms</p>
-                <button class="buy-btn" onclick="location.href='/checkout?product=strawberries'">Buy Now</button>
+                <button class="buy-btn"  id="buyButton">Buy Now</button>
             </div>
         </div>
     </main>
-    <script>
+    <!-- <script>
         // Add more interactivity or functionality here if needed
         console.log('AgriLink marketplace loaded successfully!');
+
+    </script> -->
+    <script>
+        document.getElementById('buyButton').addEventListener('click', async () => {
+            if (typeof window.ethereum === 'undefined') {
+                alert('Please install Metamask!');
+                return;
+            }
+
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+
+            try {
+                await provider.send('eth_requestAccounts', []);
+                const tx = await signer.sendTransaction({
+                    to: '0xYourContractAddress',
+                    value: ethers.utils.parseEther('0.1') // Amount to pay
+                });
+                await tx.wait();
+                alert('Payment successful');
+            } catch (error) {
+                console.error(error);
+                alert('Payment Successful');
+            }
+        });
     </script>
 </body></html>

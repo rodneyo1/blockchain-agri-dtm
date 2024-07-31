@@ -25,6 +25,7 @@ func main() {
 	http.HandleFunc("/login", Bitcoin.HandleLogin)
 	http.HandleFunc("/registeration", Bitcoin.HandlerRegisterPAge)
 	http.HandleFunc("/register", Bitcoin.HandleRegister)
+	// http.HandleFunc("/validate", Bitcoin.HandleValidate)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {

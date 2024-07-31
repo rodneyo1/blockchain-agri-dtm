@@ -124,7 +124,10 @@ func HandleRegister(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "User registered successfully")
+	home := template.Must(template.ParseFiles("./web/templates/index.html"))
+	// w.WriteHeader(http.StatusOK)
+
+	home.Execute(w, nil)
 }
 
 // func HandleLogin(w http.ResponseWriter, r *http.Request) {

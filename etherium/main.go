@@ -5,183 +5,61 @@ import (
     "crypto/ecdsa"
     "fmt"
     "math/big"
+    "net/http"
     "os"
     "strings"
 
+    "github.com/ethereum/go-ethereum"
     "github.com/ethereum/go-ethereum/accounts/abi"
     "github.com/ethereum/go-ethereum/common"
     "github.com/ethereum/go-ethereum/core/types"
     "github.com/ethereum/go-ethereum/crypto"
     "github.com/ethereum/go-ethereum/ethclient"
-    "github.com/joho/godotenv"
+    "github.com/gorilla/mux"
 )
 
-const contractABI = `[{
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "bytes32",
-        "name": "previousHash",
-        "type": "bytes32"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "timestamp",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "nonce",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "farmerName",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "farmerPhoneNumber",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "customerName",
-        "type": "string"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "customerPhoneNumber",
-        "type": "string"
-      }
-    ],
-    "name": "TransactionLogged",
-    "type": "event"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "index",
-        "type": "uint256"
-      }
-    ],
-    "name": "getTransaction",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "previousHash",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "uint256",
-        "name": "timestamp",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "nonce",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "farmerName",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "farmerPhoneNumber",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "customerName",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "customerPhoneNumber",
-        "type": "string"
-      }
-    ],
-    "name": "getTransaction",
-    "type": "function"
-  }]`
+const contractABI = `[{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getTransaction","outputs":[{"internalType":"bytes32","name":"previousHash","type":"bytes32"},{"internalType":"uint256","name":"timestamp","type":"uint256"},{"internalType":"uint256","name":"nonce","type":"uint256"},{"internalType":"string","name":"farmerName","type":"string"},{"internalType":"string","name":"farmerPhoneNumber","type":"string"},{"internalType":"string","name":"customerName","type":"string"},{"internalType":"uint256","name":"amount","type":"uint256"},{"internalType":"string","name":"customerPhoneNumber","type":"string"}],"stateMutability":"view","type":"function"}]`
 
-func encodeTransactionData(abi abi.ABI, index *big.Int) ([]byte, error) {
-    return abi.Pack("getTransaction", index)
-}
-
-func main() {
-    err := godotenv.Load()
-    if err != nil {
-        fmt.Printf("Error loading .env file: %v\n", err)
-        return
-    }
-
+func handlePayment(w http.ResponseWriter, r *http.Request) {
     client, err := ethclient.Dial(os.Getenv("SEPOLIA_URL"))
     if err != nil {
-        fmt.Printf("Failed to connect to the Ethereum client: %v\n", err)
+        http.Error(w, "Failed to connect to Ethereum client", http.StatusInternalServerError)
         return
     }
 
     privateKey, err := crypto.HexToECDSA(os.Getenv("PRIVATE_KEY"))
     if err != nil {
-        fmt.Printf("Failed to load private key: %v\n", err)
-        return
-    }
-
-    publicKey := privateKey.Public()
-    publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
-    if !ok {
-        fmt.Printf("Failed to cast public key to ECDSA\n")
-        return
-    }
-    fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
-
-    nonce, err := client.PendingNonceAt(context.Background(), fromAddress)
-    if err != nil {
-        fmt.Printf("Failed to get nonce: %v\n", err)
-        return
-    }
-
-    gasPrice, err := client.SuggestGasPrice(context.Background())
-    if err != nil {
-        fmt.Printf("Failed to suggest gas price: %v\n", err)
+        http.Error(w, "Failed to load private key", http.StatusInternalServerError)
         return
     }
 
     contractAddress := common.HexToAddress(os.Getenv("CONTRACT_ADDRESS"))
     parsedABI, err := abi.JSON(strings.NewReader(contractABI))
     if err != nil {
-        fmt.Printf("Failed to parse contract ABI: %v\n", err)
+        http.Error(w, "Failed to parse contract ABI", http.StatusInternalServerError)
         return
     }
 
-    // Example index value for fetching the transaction
-    index := big.NewInt(0) // Replace with the actual index value you want to query
+    // Example: Handle payment request
+    // You need to extract payment details from the request (amount, etc.)
+    index := big.NewInt(0) // This should be dynamic based on request
 
-    data, err := encodeTransactionData(parsedABI, index)
+    data, err := parsedABI.Pack("getTransaction", index)
     if err != nil {
-        fmt.Printf("Failed to pack transaction data: %v\n", err)
+        http.Error(w, "Failed to pack transaction data", http.StatusInternalServerError)
+        return
+    }
+
+    fromAddress := crypto.PubkeyToAddress(privateKey.PublicKey)
+    nonce, err := client.PendingNonceAt(context.Background(), fromAddress)
+    if err != nil {
+        http.Error(w, "Failed to get nonce", http.StatusInternalServerError)
+        return
+    }
+
+    gasPrice, err := client.SuggestGasPrice(context.Background())
+    if err != nil {
+        http.Error(w, "Failed to suggest gas price", http.StatusInternalServerError)
         return
     }
 
@@ -189,54 +67,27 @@ func main() {
 
     chainID, err := client.NetworkID(context.Background())
     if err != nil {
-        fmt.Printf("Failed to get network ID: %v\n", err)
+        http.Error(w, "Failed to get network ID", http.StatusInternalServerError)
         return
     }
     signedTx, err := types.SignTx(tx, types.NewEIP155Signer(chainID), privateKey)
     if err != nil {
-        fmt.Printf("Failed to sign transaction: %v\n", err)
+        http.Error(w, "Failed to sign transaction", http.StatusInternalServerError)
         return
     }
 
     err = client.SendTransaction(context.Background(), signedTx)
     if err != nil {
-        fmt.Printf("Failed to send transaction: %v\n", err)
+        http.Error(w, "Failed to send transaction", http.StatusInternalServerError)
         return
     }
 
-    fmt.Printf("Transaction sent: %s\n", signedTx.Hash().Hex())
+    fmt.Fprintf(w, "Transaction sent: %s", signedTx.Hash().Hex())
+}
 
-    txHash := signedTx.Hash()
-    tx, isPending, err := client.TransactionByHash(context.Background(), txHash)
-    if err != nil {
-        fmt.Printf("Failed to get transaction by hash: %v\n", err)
-        return
-    }
+func main() {
+    r := mux.NewRouter()
+    r.HandleFunc("/api/payment", handlePayment).Methods("POST")
 
-    fmt.Printf("Transaction details:\n")
-    fmt.Printf("To: %s\n", tx.To().Hex())
-    fmt.Printf("Value: %s\n", tx.Value().String())
-    fmt.Printf("Gas: %d\n", tx.Gas())
-    fmt.Printf("Gas Price: %s\n", tx.GasPrice().String())
-    fmt.Printf("Nonce: %d\n", tx.Nonce())
-    fmt.Printf("Data: %x\n", tx.Data())
-    fmt.Printf("Is Pending: %v\n", isPending)
-
-    receipt, err := client.TransactionReceipt(context.Background(), txHash)
-    if err != nil {
-        fmt.Printf("Failed to get transaction receipt: %v\n", err)
-        return
-    }
-
-    if receipt == nil {
-        fmt.Printf("Transaction receipt is nil\n")
-        return
-    }
-    
-    fmt.Printf("")
-    fmt.Printf("Transaction receipt:\n")
-    fmt.Printf("Status: %d\n", receipt.Status)
-    fmt.Printf("Block Number: %d\n", receipt.BlockNumber.Uint64())
-    fmt.Printf("Gas Used: %d\n", receipt.GasUsed)
-    fmt.Printf("Logs: %v\n", receipt.Logs)
+    http.ListenAndServe(":8080", r)
 }
