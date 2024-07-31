@@ -1,21 +1,21 @@
 package main
 
 import (
-	"context"
-	"fmt"
-	"log"
-	"math/big"
-	"os"
-	"strings"
+    "context"
+    "crypto/ecdsa"
+    "fmt"
+    "math/big"
+    "os"
+    "strings"
 
-	
-	"github.com/ethereum/go-ethereum/accounts/abi"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/joho/godotenv"
+    "github.com/ethereum/go-ethereum/accounts/abi"
+    "github.com/ethereum/go-ethereum/common"
+    "github.com/ethereum/go-ethereum/core/types"
+    "github.com/ethereum/go-ethereum/crypto"
+    "github.com/ethereum/go-ethereum/ethclient"
+    "github.com/joho/godotenv"
 )
 
-// Replace with your contract ABI and address
 const contractABI = `[{
     "anonymous": false,
     "inputs": [
@@ -122,181 +122,121 @@ const contractABI = `[{
         "type": "string"
       }
     ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getTransactionCount",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "bytes32",
-        "name": "_previousHash",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_timestamp",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_nonce",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "_farmerName",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_farmerPhoneNumber",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_customerName",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "_customerPhoneNumber",
-        "type": "string"
-      }
-    ],
-    "name": "logTransaction",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "transactionCount",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "transactions",
-    "outputs": [
-      {
-        "internalType": "bytes32",
-        "name": "previousHash",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "uint256",
-        "name": "timestamp",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "nonce",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "farmerName",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "farmerPhoneNumber",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "customerName",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "customerPhoneNumber",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
+    "name": "getTransaction",
     "type": "function"
   }]`
-const contractAddress = "0xcC4072ed9C652fF91b7581A4f8EB58b78f4b698D"
+
+func encodeTransactionData(abi abi.ABI, index *big.Int) ([]byte, error) {
+    return abi.Pack("getTransaction", index)
+}
 
 func main() {
-	// Load environment variables
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatalf("Error loading .env file")
-	}
+    err := godotenv.Load()
+    if err != nil {
+        fmt.Printf("Error loading .env file: %v\n", err)
+        return
+    }
 
-	// Get the Infura URL and private key
-	infuraURL := os.Getenv("INFURA_URL")
-	privateKey := os.Getenv("PRIVATE_KEY")
+    client, err := ethclient.Dial(os.Getenv("SEPOLIA_URL"))
+    if err != nil {
+        fmt.Printf("Failed to connect to the Ethereum client: %v\n", err)
+        return
+    }
 
-	// Connect to Ethereum network
-	client, err := ethclient.Dial(infuraURL)
-	if err != nil {
-		log.Fatalf("Failed to connect to the Ethereum client: %v", err)
-	}
+    privateKey, err := crypto.HexToECDSA(os.Getenv("PRIVATE_KEY"))
+    if err != nil {
+        fmt.Printf("Failed to load private key: %v\n", err)
+        return
+    }
 
-	// Load contract ABI
-	parsedABI, err := abi.JSON(strings.NewReader(contractABI))
-	if err != nil {
-		log.Fatalf("Failed to parse contract ABI: %v", err)
-	}
+    publicKey := privateKey.Public()
+    publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+    if !ok {
+        fmt.Printf("Failed to cast public key to ECDSA\n")
+        return
+    }
+    fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
 
-	// Create a new call message
-	contractAddr := common.HexToAddress(contractAddress)
-	callMsg := ethereum.CallMsg{
-		To:   &contractAddr,
-		Data: parsedABI.Methods["myFunction"].ID,
-	}
+    nonce, err := client.PendingNonceAt(context.Background(), fromAddress)
+    if err != nil {
+        fmt.Printf("Failed to get nonce: %v\n", err)
+        return
+    }
 
-	// Call the contract function
-	result, err := client.CallContract(context.Background(), callMsg, nil)
-	if err != nil {
-		log.Fatalf("Failed to call contract function: %v", err)
-	}
+    gasPrice, err := client.SuggestGasPrice(context.Background())
+    if err != nil {
+        fmt.Printf("Failed to suggest gas price: %v\n", err)
+        return
+    }
 
-	// Decode the result
-	var output *big.Int
-	err = parsedABI.UnpackIntoInterface(&output, "myFunction", result)
-	if err != nil {
-		log.Fatalf("Failed to unpack contract result: %v", err)
-	}
+    contractAddress := common.HexToAddress(os.Getenv("CONTRACT_ADDRESS"))
+    parsedABI, err := abi.JSON(strings.NewReader(contractABI))
+    if err != nil {
+        fmt.Printf("Failed to parse contract ABI: %v\n", err)
+        return
+    }
 
-	fmt.Printf("Contract result: %s\n", output.String())
+    // Example index value for fetching the transaction
+    index := big.NewInt(0) // Replace with the actual index value you want to query
+
+    data, err := encodeTransactionData(parsedABI, index)
+    if err != nil {
+        fmt.Printf("Failed to pack transaction data: %v\n", err)
+        return
+    }
+
+    tx := types.NewTransaction(nonce, contractAddress, big.NewInt(0), uint64(300000), gasPrice, data)
+
+    chainID, err := client.NetworkID(context.Background())
+    if err != nil {
+        fmt.Printf("Failed to get network ID: %v\n", err)
+        return
+    }
+    signedTx, err := types.SignTx(tx, types.NewEIP155Signer(chainID), privateKey)
+    if err != nil {
+        fmt.Printf("Failed to sign transaction: %v\n", err)
+        return
+    }
+
+    err = client.SendTransaction(context.Background(), signedTx)
+    if err != nil {
+        fmt.Printf("Failed to send transaction: %v\n", err)
+        return
+    }
+
+    fmt.Printf("Transaction sent: %s\n", signedTx.Hash().Hex())
+
+    txHash := signedTx.Hash()
+    tx, isPending, err := client.TransactionByHash(context.Background(), txHash)
+    if err != nil {
+        fmt.Printf("Failed to get transaction by hash: %v\n", err)
+        return
+    }
+
+    fmt.Printf("Transaction details:\n")
+    fmt.Printf("To: %s\n", tx.To().Hex())
+    fmt.Printf("Value: %s\n", tx.Value().String())
+    fmt.Printf("Gas: %d\n", tx.Gas())
+    fmt.Printf("Gas Price: %s\n", tx.GasPrice().String())
+    fmt.Printf("Nonce: %d\n", tx.Nonce())
+    fmt.Printf("Data: %x\n", tx.Data())
+    fmt.Printf("Is Pending: %v\n", isPending)
+
+    receipt, err := client.TransactionReceipt(context.Background(), txHash)
+    if err != nil {
+        fmt.Printf("Failed to get transaction receipt: %v\n", err)
+        return
+    }
+
+    if receipt == nil {
+        fmt.Printf("Transaction receipt is nil\n")
+        return
+    }
+    
+    fmt.Printf("")
+    fmt.Printf("Transaction receipt:\n")
+    fmt.Printf("Status: %d\n", receipt.Status)
+    fmt.Printf("Block Number: %d\n", receipt.BlockNumber.Uint64())
+    fmt.Printf("Gas Used: %d\n", receipt.GasUsed)
+    fmt.Printf("Logs: %v\n", receipt.Logs)
 }
