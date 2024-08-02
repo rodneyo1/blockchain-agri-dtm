@@ -1,0 +1,166 @@
+<html>
+    <head>
+        <base href="/">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AgriLink - Your Agricultural Marketplace</title>
+        <script src="https://cdn.ethers.io/lib/ethers-5.6.umd.min.js"></script>
+        <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f8f0;
+        color: #333;
+    }
+    header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    h1 {
+        margin: 0;
+    }
+    nav {
+        display: flex;
+        gap: 1rem;
+    }
+    .auth-btn {
+        background-color: #45a049;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .auth-btn:hover {
+        background-color: #397d3b;
+    }
+    main {
+        max-width: 1200px;
+        margin: 2rem auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+    .product {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.3s;
+    }
+    .product:hover {
+        transform: translateY(-5px);
+    }
+    .product img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    .product-info {
+        padding: 1rem;
+    }
+    .seller {
+        font-size: 0.9rem;
+        color: #666;
+    }
+    .buy-btn {
+        display: block;
+        width: 100%;
+        padding: 0.5rem;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .buy-btn:hover {
+        background-color: #45a049;
+    }
+</style></head><body>
+    <header>
+        <h1>AgriLink</h1>
+        <nav>
+            <a href="/registeration">register</a>
+            <a href="/login">login</a>
+        </nav>
+    </header>
+    <main>
+        <div class="product">
+            <img src="static/Untitled.jpeg" alt="Fresh red tomatoes in a wooden crate" width="200" height="200">
+            <div class="product-info">
+                <p class="seller">Green Thumb Farms</p>
+                <button class="buy-btn" id="buyButton">Buy Now</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="static/Untitled2.jpeg" alt="Bunch of organic carrots with green tops" width="200" height="200">
+            <div class="product-info">
+                <p class="seller">Root Vegetable Co.</p>
+                <button class="buy-btn" id="buyButton" >Buy Now</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="static/Untitled3.jpeg" alt="Red apples in a wicker basket" width="200" height="200">
+            <div class="product-info">
+                <p class="seller">Orchard Delights</p>
+                <button class="buy-btn  id="buyButton">Buy Now</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="static/Untitled4.jpeg" alt="Fresh green lettuce heads" width="200" height="200">
+            <div class="product-info">
+                <p class="seller">Leafy Greens Farm</p>
+                <button class="buy-btn" id="buyButton" >Buy Now</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="static/Untitled5.jpeg" alt="Russet potatoes in a burlap sack" width="200" height="200">
+            <div class="product-info">
+                <p class="seller">Spud Masters</p>
+                <button class="buy-btn" id="buyButton" >Buy Now</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="static/Untitled6.jpeg" alt="Fresh ripe strawberries in a punnet" width="200" height="200">
+            <div class="product-info">
+                <p class="seller">Berry Good Farms</p>
+                <button class="buy-btn"  id="buyButton">Buy Now</button>
+            </div>
+        </div>
+    </main>
+    <!-- <script>
+        // Add more interactivity or functionality here if needed
+        console.log('AgriLink marketplace loaded successfully!');
+
+    </script> -->
+    <script>
+        document.getElementById('buyButton').addEventListener('click', async () => {
+            if (typeof window.ethereum === 'undefined') {
+                alert('Please install Metamask!');
+                return;
+            }
+
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+
+            try {
+                await provider.send('eth_requestAccounts', []);
+                const tx = await signer.sendTransaction({
+                    to: '0xYourContractAddress',
+                    value: ethers.utils.parseEther('0.1') // Amount to pay
+                });
+                await tx.wait();
+                alert('Payment successful');
+            } catch (error) {
+                console.error(error);
+                alert('Payment Successful');
+            }
+        });
+    </script>
+</body></html>
